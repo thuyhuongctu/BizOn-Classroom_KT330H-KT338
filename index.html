@@ -94,6 +94,13 @@
   .note-card b{color:var(--ink)}
   ul.confirmed{margin:0;padding-left:1.1em}
   ul.confirmed li{margin:6px 0}
+  .brand-mast{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); width:fit-content}
+  .brand-mast img{width:34px; height:34px; border-radius:9px; display:block}
+  .brand-mast .word{font-weight:800; font-size:17px; letter-spacing:-.01em}
+  .brand-mast small{display:block; font-weight:600; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+  .soon-badge{display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; font-size:10.5px;
+    font-weight:700; background:var(--accent); color:var(--accent-ink); vertical-align:middle}
+  .linkcard.is-pending{opacity:.72}
 
   /* --- Clay ("đất sét") theme — nhân vật BizOn, phỏng theo theme "Đất sét noir"
      của EnQuiz: khối nổi có bóng đổ + viền sáng mảnh + bóng chìm đáy, bo góc
@@ -153,6 +160,11 @@
 </button>
 
 <div class="wrap">
+
+  <a class="brand-mast" href="https://thuyhuongctu.github.io/BizOn/" target="_blank" rel="noreferrer">
+    <img src="brand-icon.svg" alt="BizOn">
+    <span class="word">BizOn<small>KT330H &amp; KT338</small></span>
+  </a>
 
   <div class="tabbar" role="tablist" aria-label="Chọn học phần">
     <button type="button" class="tabbtn" id="tabbtn-kt330h" role="tab" aria-selected="true" aria-controls="tab-kt330h">KT330H · Khởi sự doanh nghiệp</button>
@@ -258,10 +270,11 @@
         <p>Ôn thi trắc nghiệm 300 câu, 5 chương — luyện đề có tính giờ, giải thích ngay từng câu.</p>
         <span class="go">Ôn tập →</span>
       </a>
-      <a class="linkcard" href="https://thuyhuongctu.github.io/BizOn-Classroom_KT330H/" target="_blank" rel="noreferrer">
+      <a class="linkcard is-pending" href="https://thuyhuongctu.github.io/BizOn-Classroom_KT330H/" target="_blank" rel="noreferrer">
         <div class="ico">📅</div>
-        <h3>Lịch học chi tiết</h3>
-        <p>Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm.</p>
+        <h3>Lịch học chi tiết <span class="soon-badge">Sắp ra mắt</span></h3>
+        <p>Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm.
+          Trang đang chờ deploy, có thể chưa mở được ngay.</p>
         <span class="go">Xem lịch →</span>
       </a>
     </div>
