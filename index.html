@@ -94,6 +94,56 @@
   .note-card b{color:var(--ink)}
   ul.confirmed{margin:0;padding-left:1.1em}
   ul.confirmed li{margin:6px 0}
+
+  /* --- Clay ("đất sét") theme — nhân vật BizOn, phỏng theo theme "Đất sét noir"
+     của EnQuiz: khối nổi có bóng đổ + viền sáng mảnh + bóng chìm đáy, bo góc
+     rộng không cạnh sắc, bấm xuống thì lún như nặn đất sét thật. Luôn tối,
+     không đổi theo sáng/tối của trang — đây là một "góc phòng" riêng. */
+  .clay{
+    --c-void:#0C0E10; --c-bg:#121416; --c-surface:#1E2022; --c-surface-2:#282A2C;
+    --c-border:#333537; --c-text:#E2E2E5; --c-text-soft:#D0C5AF; --c-muted:#A6A8AC;
+    --c-primary:#F2CA50; --c-primary-dark:#D4AF37; --c-on-primary:#3C2F00;
+    --c-radius:22px; --c-radius-lg:30px;
+    background:var(--c-bg); color:var(--c-text); border-radius:var(--c-radius-lg);
+    padding:28px 20px; margin-top:8px;
+  }
+  .clay h2{color:var(--c-text)}
+  .clay .lede{color:var(--c-text-soft)}
+  .clay-panel{
+    background:var(--c-surface); border:1px solid var(--c-border); border-radius:var(--c-radius);
+    box-shadow:6px 10px 24px rgba(0,0,0,.42), inset 2px 2px 5px rgba(255,255,255,.05), inset -4px -4px 10px rgba(0,0,0,.5);
+  }
+  .clay-hero{overflow:hidden; padding:0}
+  .clay-hero video{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:var(--c-radius)}
+  .clay-hero figcaption{padding:14px 18px; font-size:12.5px; color:var(--c-muted); margin:0}
+  .clay-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:14px}
+  .clay-card{padding:18px; text-align:center}
+  .clay-card img{width:100%; max-width:150px; margin:0 auto 12px; display:block}
+  .clay-card h3{margin:0 0 6px; font-size:15px; color:var(--c-text)}
+  .clay-card p{margin:0; font-size:12.5px; color:var(--c-muted); line-height:1.5}
+  .clay-roles{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+  .clay-role{
+    flex:1 1 140px; padding:14px; text-align:center; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .clay-role:active{
+    box-shadow:inset 3px 3px 8px rgba(0,0,0,.6), inset -1px -1px 3px rgba(255,255,255,.04);
+    transform:scale(.98);
+  }
+  .clay-role img{width:72px; height:72px; object-fit:contain; margin:0 auto 8px; display:block}
+  .clay-role b{display:block; font-size:13px; color:var(--c-primary)}
+  .clay-role span{display:block; font-size:11.5px; color:var(--c-muted); margin-top:2px}
+  .clay-cdo-note{
+    flex:1 1 140px; padding:14px; text-align:center; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; border:1px dashed var(--c-border); border-radius:var(--c-radius);
+  }
+  .clay-cdo-note b{font-size:13px; color:var(--c-text-soft)}
+  .clay-cdo-note span{display:block; font-size:11px; color:var(--c-muted); margin-top:4px}
+  .clay video.clay-mv{width:100%; border-radius:var(--c-radius); display:block; background:#000}
+  .clay .clay-caption{font-size:12.5px; color:var(--c-muted); margin:10px 0 0}
+  .clay .clay-linkcard{
+    display:block; margin-top:16px; padding:16px 20px; text-decoration:none; color:var(--c-text);
+  }
+  .clay .clay-linkcard .go{color:var(--c-primary); font-weight:700; font-size:12.5px}
 </style>
 </head>
 <body>
@@ -107,6 +157,7 @@
   <div class="tabbar" role="tablist" aria-label="Chọn học phần">
     <button type="button" class="tabbtn" id="tabbtn-kt330h" role="tab" aria-selected="true" aria-controls="tab-kt330h">KT330H · Khởi sự doanh nghiệp</button>
     <button type="button" class="tabbtn" id="tabbtn-kt338" role="tab" aria-selected="false" aria-controls="tab-kt338">KT338 · Đầu tư quốc tế</button>
+    <button type="button" class="tabbtn" id="tabbtn-nhanvat" role="tab" aria-selected="false" aria-controls="tab-nhanvat">🎭 Nhân vật BizOn</button>
   </div>
 
   <div id="tab-kt330h" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-kt330h">
@@ -250,6 +301,96 @@
 
   </div>
 
+  <div id="tab-nhanvat" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-nhanvat" hidden>
+  <div class="clay">
+
+    <header class="hero" style="padding-top:8px">
+      <p class="eyebrow" style="color:var(--c-primary)">BizOn Bật Nghiệp · Thế giới nhân vật</p>
+      <h1 style="color:var(--c-text)">Gặp gỡ dàn nhân vật BizOn</h1>
+      <p class="lede">Trước khi vào vòng chơi đầu tiên, làm quen với những gương mặt bạn sẽ gặp trong
+        game — từ cố vấn AI luôn giải thích "Vì sao?" sau mỗi vòng, đến 5 vai trò bạn sẽ đảm nhiệm
+        trong đội.</p>
+    </header>
+
+    <figure class="clay-panel clay-hero" style="margin:20px 0 0">
+      <video autoplay muted loop playsinline poster="posters/lumina-workshop.jpg">
+        <source src="video/lumina-loop.mp4" type="video/mp4">
+      </video>
+      <figcaption>Lumina — cố vấn AI đất sét 3D của BizOn Bật Nghiệp — trong xưởng bên sông.</figcaption>
+    </figure>
+
+    <section>
+      <h2>Nhân vật chính</h2>
+      <div class="clay-grid">
+        <div class="clay-panel clay-card">
+          <img src="characters/lumina-ao-dai-wave.webp" alt="Lumina vẫy tay chào">
+          <h3>Lumina</h3>
+          <p>Cố vấn AI của BizOn Bật Nghiệp. Sau mỗi vòng chơi, bấm nút «Vì sao?» của Lumina để nghe
+            giải thích kết quả thay vì chỉ đọc con số.</p>
+        </div>
+        <div class="clay-panel clay-card">
+          <img src="characters/anh-tu-ao-dai-welcome-cut.webp" alt="Nhân vật Anh Tú chào đón">
+          <h3>Anh Tú</h3>
+          <p>Nhân vật dẫn chuyện, xuất hiện ở các màn chào hỏi và hướng dẫn trong game.</p>
+        </div>
+        <div class="clay-panel clay-card">
+          <img src="characters/bizon-duo-music.webp" alt="Cặp linh vật BizOn Duo">
+          <h3>BizOn Duo</h3>
+          <p>Cặp linh vật xuất hiện ở phần âm nhạc/anthem của BizOn Bật Nghiệp.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>5 vai trò trong đội chơi</h2>
+      <p class="lede" style="margin-bottom:0">Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm
+        vai CDO — Trưởng phân tích dữ liệu, giữ Nhật ký đội và trình chiếu file Excel hoà vốn khi pitch.</p>
+      <div class="clay-roles">
+        <div class="clay-panel clay-role">
+          <img src="characters/team/ceo-cut.webp" alt="CEO">
+          <b>CEO</b><span>Nhà lãnh đạo tầm nhìn</span>
+        </div>
+        <div class="clay-panel clay-role">
+          <img src="characters/team/cfo-cut.webp" alt="CFO">
+          <b>CFO</b><span>Chiến lược gia tài chính</span>
+        </div>
+        <div class="clay-panel clay-role">
+          <img src="characters/team/cmo-cut.webp" alt="CMO">
+          <b>CMO</b><span>Phù thuỷ marketing</span>
+        </div>
+        <div class="clay-panel clay-role">
+          <img src="characters/team/coo-cut.webp" alt="COO">
+          <b>COO</b><span>Chuyên gia vận hành</span>
+        </div>
+        <div class="clay-panel clay-role">
+          <img src="characters/team/sec-cut.webp" alt="SEC">
+          <b>SEC</b><span>Thư ký pháp chế</span>
+        </div>
+        <div class="clay-cdo-note">
+          <b>CDO</b><span>Trưởng phân tích dữ liệu — chỉ ở đội 6 người, chưa có hình riêng.</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Lumina "lên sóng"</h2>
+      <div class="clay-panel" style="padding:16px">
+        <video class="clay-mv" controls preload="none" poster="posters/lumina-wave.jpg">
+          <source src="video/lumina-bat-nghiep.mp4" type="video/mp4">
+        </video>
+        <p class="clay-caption">Clip 20 giây từ MV "Lumina chào lớp" ghép hai cảnh cùng đoạn điệp khúc
+          anthem Bật Nghiệp.</p>
+      </div>
+    </section>
+
+    <a class="clay-panel clay-linkcard" href="https://thuyhuongctu.github.io/BizOn/game.html" target="_blank" rel="noreferrer">
+      <div>🐮 <b>Chơi cùng những nhân vật này trong BizOn Bật Nghiệp</b></div>
+      <span class="go">Vào game →</span>
+    </a>
+
+  </div>
+  </div>
+
   <footer>
     <p>KT330H Khởi sự doanh nghiệp &amp; KT338 Đầu tư quốc tế · Khoa Kinh doanh quốc tế (KT8),
       Trường Kinh tế, Đại học Cần Thơ · HK1 2026–2027.</p>
@@ -279,7 +420,8 @@
 (function(){
   var tabs = [
     { btn: document.getElementById('tabbtn-kt330h'), panel: document.getElementById('tab-kt330h') },
-    { btn: document.getElementById('tabbtn-kt338'), panel: document.getElementById('tab-kt338') }
+    { btn: document.getElementById('tabbtn-kt338'), panel: document.getElementById('tab-kt338') },
+    { btn: document.getElementById('tabbtn-nhanvat'), panel: document.getElementById('tab-nhanvat') }
   ];
   function select(active){
     tabs.forEach(function(t){
