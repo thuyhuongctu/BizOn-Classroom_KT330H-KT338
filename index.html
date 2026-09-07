@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Trang tổng quan học phần KT330H Khởi sự doanh nghiệp: mục tiêu, chuẩn đầu ra (CLO), lịch 12 tuần và liên kết tới game BizOn Bật Nghiệp và app ôn thi EnQuiz.">
+<meta name="description" content="Trang tổng quan 2 học phần KT330H Khởi sự doanh nghiệp và KT338 Đầu tư quốc tế: mục tiêu, chuẩn đầu ra, lịch học và công cụ học tập.">
 <meta name="author" content="Đỗ Thùy Hương và Phan Anh Tú">
 <meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111417" media="(prefers-color-scheme: dark)">
-<title>KT330H — Khởi sự doanh nghiệp</title>
+<title>KT330H &amp; KT338 — Tổng quan học phần</title>
 <link rel="manifest" href="manifest.webmanifest">
 <script>try{if(localStorage.getItem('kt330h-theme')==='dark')document.documentElement.dataset.theme='dark';}catch(e){}</script>
 <style>
@@ -86,6 +86,14 @@
   footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
   footer a{text-decoration:underline}
   .no-print-hint{font-size:11px;color:var(--muted);margin-top:6px}
+  .tabbar{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
+  .tabbtn{font:inherit;font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer}
+  .tabbtn[aria-selected="true"]{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+  .note-card{padding:16px 20px;font-size:13.5px;color:var(--muted)}
+  .note-card b{color:var(--ink)}
+  ul.confirmed{margin:0;padding-left:1.1em}
+  ul.confirmed li{margin:6px 0}
 </style>
 </head>
 <body>
@@ -95,6 +103,13 @@
 </button>
 
 <div class="wrap">
+
+  <div class="tabbar" role="tablist" aria-label="Chọn học phần">
+    <button type="button" class="tabbtn" id="tabbtn-kt330h" role="tab" aria-selected="true" aria-controls="tab-kt330h">KT330H · Khởi sự doanh nghiệp</button>
+    <button type="button" class="tabbtn" id="tabbtn-kt338" role="tab" aria-selected="false" aria-controls="tab-kt338">KT338 · Đầu tư quốc tế</button>
+  </div>
+
+  <div id="tab-kt330h" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-kt330h">
 
   <header class="hero">
     <p class="eyebrow">KT330H · Khởi sự doanh nghiệp · HK1 2026–2027</p>
@@ -201,9 +216,43 @@
     </div>
   </section>
 
+  </div>
+
+  <div id="tab-kt338" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-kt338" hidden>
+
+  <header class="hero">
+    <p class="eyebrow">KT338 · Đầu tư quốc tế · HK1 2026–2027</p>
+    <h1>Học phần Đầu tư quốc tế</h1>
+    <p class="lede">Thông tin học phần này đang được cập nhật dần theo đề cương chính thức. Trang chỉ
+      hiển thị những gì đã được xác nhận — các mục còn thiếu (CLO, rubric, lịch chi tiết từng tuần)
+      sẽ được bổ sung khi có đủ thông tin.</p>
+    <div class="meta-row">
+      <div class="meta"><b>PGS.TS. Phan Anh Tú</b>Giảng viên</div>
+      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b>Trợ giảng cấu phần thực hành</div>
+      <div class="meta"><b>KT33801</b>Nhóm 01 · 26 SV</div>
+      <div class="meta"><b>Thứ 3 &amp; Thứ 5</b>Phòng 301/MT</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Những mốc đã xác nhận</h2>
+    <div class="card note-card">
+      <ul class="confirmed">
+        <li><b>Lịch học hằng tuần:</b> Thứ Ba và Thứ Năm, phòng 301/MT.</li>
+        <li><b>Tuần 5 (06/10/2026):</b> buổi thực hành duy nhất tại phòng máy tính 2 — chơi game
+          <b>Hộ Chiếu Thương Hiệu</b>.</li>
+        <li><b>Tuần 11 (17/11/2026):</b> thi kết thúc học phần, hình thức trên máy.</li>
+      </ul>
+    </div>
+    <p class="no-print-hint">Chưa có CLO và bảng điểm chi tiết cho KT338 tại thời điểm này — sẽ cập nhật
+      khi đề cương chính thức được đối chiếu.</p>
+  </section>
+
+  </div>
+
   <footer>
-    <p>KT330H Khởi sự doanh nghiệp · Khoa Kinh doanh quốc tế (KT8), Trường Kinh tế, Đại học Cần Thơ ·
-      HK1 2026–2027.</p>
+    <p>KT330H Khởi sự doanh nghiệp &amp; KT338 Đầu tư quốc tế · Khoa Kinh doanh quốc tế (KT8),
+      Trường Kinh tế, Đại học Cần Thơ · HK1 2026–2027.</p>
     <p>© 2026 Đỗ Thùy Hương &amp; Phan Anh Tú. Mã nguồn:
       <a href="https://github.com/thuyhuongctu/BizOn" target="_blank" rel="noreferrer">BizOn</a> ·
       <a href="https://github.com/thuyhuongctu/EnQuiz" target="_blank" rel="noreferrer">EnQuiz</a> ·
@@ -225,6 +274,22 @@
     var next = isDark() ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem('kt330h-theme', next); } catch(e){}
+  });
+})();
+(function(){
+  var tabs = [
+    { btn: document.getElementById('tabbtn-kt330h'), panel: document.getElementById('tab-kt330h') },
+    { btn: document.getElementById('tabbtn-kt338'), panel: document.getElementById('tab-kt338') }
+  ];
+  function select(active){
+    tabs.forEach(function(t){
+      var isActive = t === active;
+      t.btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      t.panel.hidden = !isActive;
+    });
+  }
+  tabs.forEach(function(t){
+    t.btn.addEventListener('click', function(){ select(t); });
   });
 })();
 </script>
