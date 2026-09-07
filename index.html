@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Trang tổng quan học phần KT330H Khởi sự doanh nghiệp: mục tiêu, chuẩn đầu ra (CLO), lịch 12 tuần và liên kết tới game BizOn Bật Nghiệp và app ôn thi EnQuiz.">
+<meta name="author" content="Đỗ Thùy Hương và Phan Anh Tú">
+<meta name="theme-color" content="#F7F4EE" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111417" media="(prefers-color-scheme: dark)">
+<title>KT330H — Khởi sự doanh nghiệp</title>
+<link rel="manifest" href="manifest.webmanifest">
+<script>try{if(localStorage.getItem('kt330h-theme')==='dark')document.documentElement.dataset.theme='dark';}catch(e){}</script>
+<style>
+  :root{
+    --bg:#F7F4EE; --card:#FFFFFF; --ink:#20261F; --muted:#5B6358; --line:rgba(32,38,31,.12);
+    --primary:#0F6E5C; --primary-ink:#FFFFFF; --accent:#E7B33E; --accent-ink:#3A2A05;
+    --disc:#8A6FD1; --game:#0F6E5C; --pitch:#C2622A; --exam:#B23A48;
+    --radius:20px; --shadow:0 10px 28px -12px rgba(20,25,18,.18);
+  }
+  html[data-theme="dark"]{
+    --bg:#12140F; --card:#1B1E17; --ink:#EDEFE9; --muted:#A8AE9E; --line:rgba(237,239,233,.14);
+    --primary:#4FD3AE; --primary-ink:#0B1A15; --accent:#F0C563; --accent-ink:#3A2A05;
+    --disc:#B7A3F0; --game:#4FD3AE; --pitch:#F0985F; --exam:#F0808A;
+    color-scheme:dark;
+  }
+  @media (prefers-color-scheme: dark){
+    html:not([data-theme="light"]){
+      --bg:#12140F; --card:#1B1E17; --ink:#EDEFE9; --muted:#A8AE9E; --line:rgba(237,239,233,.14);
+      --primary:#4FD3AE; --primary-ink:#0B1A15; --accent:#F0C563; --accent-ink:#3A2A05;
+      --disc:#B7A3F0; --game:#4FD3AE; --pitch:#F0985F; --exam:#F0808A;
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Be Vietnam Pro",sans-serif;
+    line-height:1.5; -webkit-font-smoothing:antialiased;}
+  a{color:inherit}
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 64px}
+  header.hero{padding:36px 0 8px}
+  .eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}
+  h1{font-size:clamp(28px,4.4vw,42px);margin:.35em 0 .2em;font-weight:800;letter-spacing:-.01em}
+  .lede{color:var(--muted);max-width:640px;font-size:15px}
+  .themebtn{position:fixed;top:16px;right:16px;z-index:20;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow);cursor:pointer}
+  .themebtn svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.8}
+  section{margin-top:36px}
+  h2{font-size:20px;font-weight:800;margin:0 0 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .meta{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:13px}
+  .meta b{display:block;font-size:15px}
+  .clo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+  .clo{padding:14px;border-radius:14px;border:1px solid var(--line)}
+  .clo .tag{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .clo .id{font-weight:800;color:var(--primary);margin-right:6px}
+  .kiến-thức{background:color-mix(in srgb, var(--disc) 10%, var(--card))}
+  .kỹ-năng{background:color-mix(in srgb, var(--game) 8%, var(--card))}
+  .thái-độ{background:color-mix(in srgb, var(--accent) 14%, var(--card))}
+  table.weeks{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.weeks th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line)}
+  table.weeks td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.weeks tr:last-child td{border-bottom:none}
+  .wk{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;
+    border-radius:8px;background:var(--primary);color:var(--primary-ink);font-weight:800;font-size:12px;padding:0 6px}
+  .wk.close{background:var(--pitch)}
+  .wk.exam{background:var(--exam)}
+  .rubric{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .rubric .box{border-radius:16px;padding:16px;color:#fff}
+  .rubric .box.disc{background:var(--disc)}
+  .rubric .box.game{background:var(--game)}
+  .rubric .box.pitch{background:var(--pitch)}
+  .rubric .box.exam{background:var(--exam)}
+  .rubric .pct{font-size:28px;font-weight:800}
+  .rubric .lbl{font-size:12.5px;opacity:.92;margin-top:2px}
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .linkcard{display:block;padding:20px;border-radius:var(--radius);border:1px solid var(--line);
+    background:var(--card);box-shadow:var(--shadow);text-decoration:none;transition:transform .15s ease}
+  .linkcard:hover{transform:translateY(-2px)}
+  .linkcard .ico{font-size:26px}
+  .linkcard h3{margin:.4em 0 .2em;font-size:16px;color:var(--ink)}
+  .linkcard p{margin:0;color:var(--muted);font-size:13px}
+  .linkcard .go{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--primary)}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+  footer a{text-decoration:underline}
+  .no-print-hint{font-size:11px;color:var(--muted);margin-top:6px}
+</style>
+</head>
+<body>
+
+<button class="themebtn" id="themebtn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện sáng/tối">
+  <svg viewBox="0 0 24 24"><path d="M20.2 14.4A8.4 8.4 0 1 1 9.6 3.8a6.6 6.6 0 0 0 10.6 10.6z"/></svg>
+</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">KT330H · Khởi sự doanh nghiệp · HK1 2026–2027</p>
+    <h1>Chào mừng bạn đến với học phần Khởi sự doanh nghiệp</h1>
+    <p class="lede">Một trang duy nhất để biết học phần này học gì, chuẩn đầu ra ra sao, 12 tuần diễn
+      ra thế nào, và bạn sẽ dùng những công cụ nào — trước khi bước vào buổi học đầu tiên.</p>
+    <div class="meta-row">
+      <div class="meta"><b>PGS.TS. Phan Anh Tú</b>Giảng viên</div>
+      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b>Trợ giảng cấu phần thực hành</div>
+      <div class="meta"><b>KT2322F1 · KT2322F2</b>2 lớp chất lượng cao</div>
+      <div class="meta"><b>12 tuần</b>2 buổi/tuần, 3 tín chỉ</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Học phần này về gì</h2>
+    <div class="card" style="padding:20px">
+      <p style="margin:0 0 10px">Học phần dạy khởi sự doanh nghiệp qua trải nghiệm thật: mỗi đội điều
+        hành một công ty giả lập qua <b>2 mùa × 6 vòng quyết định</b> trong game
+        <b>BizOn Bật Nghiệp</b>, rồi <b>pitch xin vốn</b> trước một "Hội đồng đầu tư" ngay tại lớp —
+        đúng những gì một người sáng lập thật phải làm: đọc thị trường trong lúc thiếu thông tin,
+        ra quyết định theo vai trò (CEO/CMO/COO/CFO/SEC), và bảo vệ con số trước nhà đầu tư.</p>
+      <p style="margin:0;color:var(--muted)">Nội dung lý thuyết đi song song mỗi tuần: cơ hội kinh
+        doanh, mô hình kinh doanh, huy động vốn, marketing, vận hành và tài chính khởi sự — mỗi khái
+        niệm đều được kiểm chứng ngay bằng quyết định thật của đội bạn trong game.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Chuẩn đầu ra học phần (CLO)</h2>
+    <div class="clo-grid">
+      <div class="clo kiến-thức"><span class="id">CO1</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Mô tả doanh nhân làm gì và chỗ đứng trên thị trường.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO2</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Nhận diện và đánh giá cơ hội khả thi để khởi sự.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO3</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Lợi thế cạnh tranh, phân khúc, nghiên cứu để thích ứng sản phẩm.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO4</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Xây dựng business plan: marketing, vận hành, nhân sự, tài chính.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO5</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Cost/benefit, SWOT, feasibility để quyết định.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO6</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Lập Business Model Canvas (9 ô).</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO7</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Phân khúc, nghiên cứu, định vị — kế hoạch nghiên cứu thị trường.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO8</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">4P và phân tích hòa vốn cho marketing plan.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO9</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">EOU, NPV, nợ/vốn, dòng tiền, tỷ số, chi phí khởi sự.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO10</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Vận hành và việc của nhà quản lý để hoàn tất plan.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO11</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Giao tiếp, teamwork, giải quyết vấn đề, lãnh đạo.</p></div>
+      <div class="clo thái-độ"><span class="id">CO12</span><span class="tag">Thái độ</span><p style="margin:.3em 0 0">Thái độ, tự chủ, trách nhiệm, đạo đức, phục vụ cộng đồng.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lịch 12 tuần — nhìn nhanh</h2>
+    <div class="card" style="padding:8px 16px">
+      <div style="overflow-x:auto">
+        <table class="weeks">
+          <thead><tr><th>Tuần</th><th>Nội dung chính</th></tr></thead>
+          <tbody>
+            <tr><td><span class="wk">1</span></td><td>Giới thiệu học phần + cài đặt BizOn</td></tr>
+            <tr><td><span class="wk">2</span></td><td>Mùa 1 — Vòng 1–2</td></tr>
+            <tr><td><span class="wk">3</span></td><td>Mùa 1 — Vòng 3–4</td></tr>
+            <tr><td><span class="wk">4</span></td><td>Mùa 1 — Vòng 5–6</td></tr>
+            <tr><td><span class="wk">5</span></td><td>Sơ kết Mùa 1 & khởi động Mùa 2</td></tr>
+            <tr><td><span class="wk">6</span></td><td>Mùa 2 — Vòng 1–2</td></tr>
+            <tr><td><span class="wk">7</span></td><td>Mùa 2 — Vòng 3–4</td></tr>
+            <tr><td><span class="wk">8</span></td><td>Mùa 2 — Vòng 5–6 & chốt hai mùa</td></tr>
+            <tr><td><span class="wk close">9</span></td><td>Đại hội Cổ đông — Phiên A & B</td></tr>
+            <tr><td><span class="wk close">10</span></td><td>Đại hội Cổ đông — Phiên C & D</td></tr>
+            <tr><td><span class="wk close">11</span></td><td>Vòng Chung kết & Tổng kết giải đấu</td></tr>
+            <tr><td><span class="wk exam">12</span></td><td>Dự trữ + Thi kết thúc học phần (trên máy)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="no-print-hint">Lịch chi tiết theo ngày/phòng/tiết cho từng lớp: xem app kế hoạch triển khai (link bên dưới).</p>
+  </section>
+
+  <section>
+    <h2>Cách tính điểm — 10 / 20 / 20 / 50</h2>
+    <div class="rubric">
+      <div class="box disc"><div class="pct">10%</div><div class="lbl">Thảo luận / chuyên cần</div></div>
+      <div class="box game"><div class="pct">20%</div><div class="lbl">Điểm chơi mô phỏng<br>(2 Mùa × 6 vòng)</div></div>
+      <div class="box pitch"><div class="pct">20%</div><div class="lbl">Pitching<br>Đại hội Cổ đông</div></div>
+      <div class="box exam"><div class="pct">50%</div><div class="lbl">Thi cuối kỳ</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Công cụ học tập</h2>
+    <div class="links">
+      <a class="linkcard" href="https://thuyhuongctu.github.io/BizOn/game.html" target="_blank" rel="noreferrer">
+        <div class="ico">🐮</div>
+        <h3>BizOn Bật Nghiệp</h3>
+        <p>Game mô phỏng 2 Mùa × 6 vòng — nơi đội bạn ra quyết định thật mỗi tuần.</p>
+        <span class="go">Vào game →</span>
+      </a>
+      <a class="linkcard" href="https://thuyhuongctu.github.io/EnQuiz/" target="_blank" rel="noreferrer">
+        <div class="ico">📝</div>
+        <h3>EnQuiz</h3>
+        <p>Ôn thi trắc nghiệm 300 câu, 5 chương — luyện đề có tính giờ, giải thích ngay từng câu.</p>
+        <span class="go">Ôn tập →</span>
+      </a>
+      <a class="linkcard" href="https://thuyhuongctu.github.io/BizOn-Classroom_KT330H/" target="_blank" rel="noreferrer">
+        <div class="ico">📅</div>
+        <h3>Lịch học chi tiết</h3>
+        <p>Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm.</p>
+        <span class="go">Xem lịch →</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>KT330H Khởi sự doanh nghiệp · Khoa Kinh doanh quốc tế (KT8), Trường Kinh tế, Đại học Cần Thơ ·
+      HK1 2026–2027.</p>
+    <p>© 2026 Đỗ Thùy Hương &amp; Phan Anh Tú. Mã nguồn:
+      <a href="https://github.com/thuyhuongctu/BizOn" target="_blank" rel="noreferrer">BizOn</a> ·
+      <a href="https://github.com/thuyhuongctu/EnQuiz" target="_blank" rel="noreferrer">EnQuiz</a> ·
+      <a href="https://github.com/thuyhuongctu/BizOn-Classroom_KT330H" target="_blank" rel="noreferrer">BizOn-Classroom_KT330H</a>.</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var btn = document.getElementById('themebtn');
+  function isDark(){
+    var t = document.documentElement.dataset.theme;
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  btn.addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('kt330h-theme', next); } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
