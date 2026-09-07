@@ -190,25 +190,31 @@
   .clay-hero{overflow:hidden; padding:0}
   .clay-hero video{display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:var(--c-radius)}
   .clay-hero figcaption{padding:14px 18px; font-size:12.5px; color:var(--c-muted); margin:0}
-  .clay-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:14px}
-  .clay-card{padding:18px; text-align:center}
+  /* Fancy scroll — carousel cuộn ngang lấy cảm hứng từ FancyScrollView
+     (setchi): thẻ ở giữa to/rõ, hai bên nhỏ dần + mờ dần theo khoảng cách
+     tới tâm, có snap. JS (fancyScroll trong script cuối trang) đo vị trí
+     từng thẻ mỗi lần cuộn và set transform/opacity trực tiếp. */
+  .fancy-track{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; margin-top:14px; padding:10px 0}
+  .fancy-track::-webkit-scrollbar{display:none}
+  .clay-grid{padding-inline:calc(50% - 110px)}
+  .clay-card{flex:0 0 220px; padding:18px; text-align:center; scroll-snap-align:center;
+    transition:transform .12s ease, opacity .12s ease; will-change:transform,opacity}
   .clay-card img{width:150px; height:200px; object-fit:contain; margin:0 auto 12px; display:block}
   .clay-card h3{margin:0 0 6px; font-size:15px; color:var(--c-text)}
   .clay-card p{margin:0; font-size:12.5px; color:var(--c-muted); line-height:1.5}
-  .clay-roles{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+  .clay-roles{padding-inline:calc(50% - 70px)}
   .clay-role{
-    flex:1 1 140px; padding:14px; text-align:center; transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .clay-role:active{
-    box-shadow:inset 3px 3px 8px rgba(0,0,0,.6), inset -1px -1px 3px rgba(255,255,255,.04);
-    transform:scale(.98);
+    flex:0 0 140px; padding:14px; text-align:center; scroll-snap-align:center;
+    transition:transform .12s ease, opacity .12s ease; will-change:transform,opacity;
   }
   .clay-role img{width:72px; height:72px; object-fit:contain; margin:0 auto 8px; display:block}
   .clay-role b{display:block; font-size:13px; color:var(--c-primary)}
   .clay-role span{display:block; font-size:11.5px; color:var(--c-muted); margin-top:2px}
   .clay-cdo-note{
-    flex:1 1 140px; padding:14px; text-align:center; display:flex; flex-direction:column;
+    flex:0 0 140px; padding:14px; text-align:center; display:flex; flex-direction:column;
     align-items:center; justify-content:center; border:1px dashed var(--c-border); border-radius:var(--c-radius);
+    scroll-snap-align:center; transition:transform .12s ease, opacity .12s ease; will-change:transform,opacity;
   }
   .clay-cdo-note b{font-size:13px; color:var(--c-text-soft)}
   .clay-cdo-note span{display:block; font-size:11px; color:var(--c-muted); margin-top:4px}
@@ -474,7 +480,7 @@
 
     <section>
       <h2 data-vi="Nhân vật chính" data-en="Main characters">Nhân vật chính</h2>
-      <div class="clay-grid">
+      <div class="clay-grid fancy-track">
         <div class="clay-panel clay-card">
           <img src="characters/lumina-ao-dai-wave.webp" alt="Lumina vẫy tay chào">
           <h3>Lumina</h3>
@@ -498,7 +504,7 @@
       <h2 data-vi="5 vai trò trong đội chơi" data-en="5 roles on a team">5 vai trò trong đội chơi</h2>
       <p class="lede" style="margin-bottom:0" data-vi="Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm vai CDO — Trưởng phân tích dữ liệu, giữ Nhật ký đội và trình chiếu file Excel hoà vốn khi pitch." data-en="Every 5-person team fills exactly these 5 seats; a 6-person team adds a CDO — Chief Data Officer, who keeps the Team Journal and presents the break-even spreadsheet when pitching.">Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm
         vai CDO — Trưởng phân tích dữ liệu, giữ Nhật ký đội và trình chiếu file Excel hoà vốn khi pitch.</p>
-      <div class="clay-roles">
+      <div class="clay-roles fancy-track">
         <div class="clay-panel clay-role">
           <img src="characters/team/ceo-cut.webp" alt="CEO">
           <b>CEO</b><span data-vi="Nhà lãnh đạo tầm nhìn" data-en="Visionary leader">Nhà lãnh đạo tầm nhìn</span>
@@ -631,6 +637,7 @@ window.BIZON_TOUR_OPTS = { art: 'characters/lumina-ao-dai-wave.webp' };
       t.panel.hidden = !isActive;
     });
     if (active.panel) active.panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.__fancyScrollUpdateAll) window.__fancyScrollUpdateAll();
   }
   tabs.forEach(function(t){
     t.btn.addEventListener('click', function(){ select(t); });
@@ -642,6 +649,40 @@ window.BIZON_TOUR_OPTS = { art: 'characters/lumina-ao-dai-wave.webp' };
       if (target) select(target);
     });
   });
+})();
+(function(){
+  /* Fancy scroll — phỏng theo FancyScrollView (github.com/setchi/FancyScrollView):
+     mỗi thẻ nhận một giá trị khoảng cách chuẩn hoá (0 ở giữa, 1 ở rìa) rồi tự
+     co/mờ theo giá trị đó; JS chỉ đo và gán transform, không có hiệu ứng dựng
+     sẵn — đúng tinh thần bản gốc (viết cho Unity, ở đây chuyển sang CSS/JS). */
+  function initFancyScroll(track){
+    var items = Array.prototype.slice.call(track.children);
+    if (!items.length) return function(){};
+    function update(){
+      var rect = track.getBoundingClientRect();
+      if (!rect.width) return;
+      var centerX = rect.left + rect.width / 2;
+      items.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var dist = (r.left + r.width / 2 - centerX) / (rect.width / 2);
+        dist = Math.max(-1, Math.min(1, dist));
+        var a = Math.abs(dist);
+        el.style.transform = 'scale(' + (1 - a * 0.22).toFixed(3) + ')';
+        el.style.opacity = (1 - a * 0.55).toFixed(3);
+      });
+    }
+    var ticking = false;
+    track.addEventListener('scroll', function(){
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ update(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+    return update;
+  }
+  var updaters = Array.prototype.slice.call(document.querySelectorAll('.fancy-track')).map(initFancyScroll);
+  window.__fancyScrollUpdateAll = function(){ updaters.forEach(function(u){ u(); }); };
 })();
 (function(){
   var audio = document.getElementById('playerAudio');
