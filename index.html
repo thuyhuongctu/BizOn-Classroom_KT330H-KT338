@@ -10,6 +10,7 @@
 <title>KT330H &amp; KT338 — Tổng quan học phần</title>
 <link rel="manifest" href="manifest.webmanifest">
 <script>try{if(localStorage.getItem('kt330h-theme')==='dark')document.documentElement.dataset.theme='dark';}catch(e){}</script>
+<script>try{var __l=localStorage.getItem('kt330h-lang');if(__l==='en'){document.documentElement.lang='en';document.documentElement.dataset.lang='en';}}catch(e){}</script>
 <style>
   :root{
     --bg:#F7F4EE; --card:#FFFFFF; --ink:#20261F; --muted:#5B6358; --line:rgba(32,38,31,.12);
@@ -41,10 +42,11 @@
   .eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--primary)}
   h1{font-size:clamp(28px,4.4vw,42px);margin:.35em 0 .2em;font-weight:800;letter-spacing:-.01em}
   .lede{color:var(--muted);max-width:640px;font-size:15px}
-  .themebtn{position:fixed;top:16px;right:16px;z-index:20;background:var(--card);border:1px solid var(--line);
+  .toolbar{position:fixed;top:16px;right:16px;z-index:30;display:flex;gap:8px}
+  .tbtn{background:var(--card);border:1px solid var(--line);
     border-radius:999px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;
-    box-shadow:var(--shadow);cursor:pointer}
-  .themebtn svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.8}
+    box-shadow:var(--shadow);cursor:pointer;font:inherit;font-weight:800;font-size:12px;color:var(--ink);padding:0}
+  .tbtn svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:1.8}
   section{margin-top:36px}
   h2{font-size:20px;font-weight:800;margin:0 0 12px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
@@ -60,7 +62,7 @@
   .thái-độ{background:color-mix(in srgb, var(--accent) 14%, var(--card))}
   table.weeks{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed}
   table.weeks th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
-    color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line)}
+    color:var(--muted);padding:8px 6px;border-bottom:1px solid var(--line);overflow-wrap:break-word}
   table.weeks td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:break-word}
   table.weeks tr:last-child td{border-bottom:none}
   table.weeks td.buoi{text-align:center;font-weight:800;color:var(--muted)}
@@ -86,6 +88,9 @@
   .linkcard .go{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--primary)}
   footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
   footer a{text-decoration:underline}
+  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-bottom:12px}
+  .footer-grid strong{color:var(--ink)}
+  .foot-copy{margin:0}
   .no-print-hint{font-size:11px;color:var(--muted);margin-top:6px}
   .tabbar{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
   .tabbtn{font:inherit;font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:999px;
@@ -102,6 +107,31 @@
   .soon-badge{display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; font-size:10.5px;
     font-weight:700; background:var(--accent); color:var(--accent-ink); vertical-align:middle}
   .linkcard.is-pending{opacity:.72}
+
+  /* --- DeepMind-style hero: dải tối toàn màn hình, chữ lớn tối giản, nền
+     gradient chuyển động chậm bằng thuần CSS. Cố ý luôn tối bất kể theme của
+     phần còn lại của trang — đây là "cửa ngõ" ấn tượng trước khi vào nội dung. */
+  .dm-hero{position:relative;overflow:hidden;background:#07080a;color:#fff}
+  .dm-hero__bg{position:absolute;inset:0;background:
+      radial-gradient(60% 60% at 18% 15%, rgba(79,211,174,.38), transparent 60%),
+      radial-gradient(50% 55% at 82% 25%, rgba(194,98,42,.30), transparent 60%),
+      radial-gradient(70% 65% at 50% 105%, rgba(138,111,209,.28), transparent 60%),
+      #07080a;
+    animation:dm-drift 20s ease-in-out infinite alternate;
+  }
+  @keyframes dm-drift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.1) translate(-2%,1%)}}
+  .dm-hero__top{position:relative;max-width:1080px;margin:0 auto;padding:20px 20px 0;display:flex}
+  .dm-hero__top .brand-mast{color:#fff}
+  .dm-hero__top .brand-mast small{color:rgba(255,255,255,.6)}
+  .dm-hero__body{position:relative;max-width:1080px;margin:0 auto;padding:56px 20px 68px}
+  .dm-eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+  .dm-hero__body h1{font-size:clamp(32px,5.6vw,58px);font-weight:800;letter-spacing:-.02em;margin:.3em 0 .3em;max-width:820px;color:#fff}
+  .dm-lede{color:rgba(255,255,255,.76);max-width:600px;font-size:16px;line-height:1.65;margin:0}
+  .dm-cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .dm-btn{font:inherit;font-weight:700;font-size:14px;padding:12px 22px;border-radius:999px;
+    border:1px solid rgba(255,255,255,.28);background:transparent;color:#fff;cursor:pointer}
+  .dm-btn.primary{background:#fff;color:#07080a;border-color:#fff}
+  @media (prefers-reduced-motion:reduce){.dm-hero__bg{animation:none}}
 
   /* --- Clay ("đất sét") theme — nhân vật BizOn, phỏng theo theme "Đất sét noir"
      của EnQuiz: khối nổi có bóng đổ + viền sáng mảnh + bóng chìm đáy, bo góc
@@ -156,144 +186,161 @@
 </head>
 <body>
 
-<button class="themebtn" id="themebtn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện sáng/tối">
-  <svg viewBox="0 0 24 24"><path d="M20.2 14.4A8.4 8.4 0 1 1 9.6 3.8a6.6 6.6 0 0 0 10.6 10.6z"/></svg>
-</button>
+<div class="toolbar">
+  <button class="tbtn" id="langbtn" type="button" title="EN / VI">VI</button>
+  <button class="tbtn" id="themebtn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện sáng/tối">
+    <svg viewBox="0 0 24 24"><path d="M20.2 14.4A8.4 8.4 0 1 1 9.6 3.8a6.6 6.6 0 0 0 10.6 10.6z"/></svg>
+  </button>
+</div>
+
+<section class="dm-hero">
+  <div class="dm-hero__bg" aria-hidden="true"></div>
+  <div class="dm-hero__top">
+    <a class="brand-mast" href="https://thuyhuongctu.github.io/BizOn/" target="_blank" rel="noreferrer">
+      <img src="brand-icon.svg" alt="BizOn">
+      <span class="word">BizOn<small>KT330H &amp; KT338</small></span>
+    </a>
+  </div>
+  <div class="dm-hero__body">
+    <p class="dm-eyebrow" data-vi="Khoa Kinh doanh quốc tế · Trường Kinh tế · Đại học Cần Thơ" data-en="School of International Business · College of Economics · Can Tho University">Khoa Kinh doanh quốc tế · Trường Kinh tế · Đại học Cần Thơ</p>
+    <h1 data-vi="Học kinh doanh bằng những quyết định thật." data-en="Learn business through decisions that matter.">Học kinh doanh bằng những quyết định thật.</h1>
+    <p class="dm-lede" data-vi="Hai học phần, một trải nghiệm: mô phỏng doanh nghiệp, thuyết trình dự án khởi nghiệp, và một chuyến phiêu lưu quốc tế hoá thương hiệu — tất cả trong một trang." data-en="Two courses, one experience: a business simulation, a startup project pitch, and a brand-internationalization adventure — all on one page.">Hai học phần, một trải nghiệm: mô phỏng doanh nghiệp, thuyết trình dự án khởi nghiệp, và một chuyến phiêu lưu quốc tế hoá thương hiệu — tất cả trong một trang.</p>
+    <div class="dm-cta">
+      <button type="button" class="dm-btn primary" data-goto="tab-kt330h" data-vi="Vào KT330H" data-en="Enter KT330H">Vào KT330H</button>
+      <button type="button" class="dm-btn" data-goto="tab-kt338" data-vi="Vào KT338" data-en="Enter KT338">Vào KT338</button>
+    </div>
+  </div>
+</section>
 
 <div class="wrap">
 
-  <a class="brand-mast" href="https://thuyhuongctu.github.io/BizOn/" target="_blank" rel="noreferrer">
-    <img src="brand-icon.svg" alt="BizOn">
-    <span class="word">BizOn<small>KT330H &amp; KT338</small></span>
-  </a>
-
   <div class="tabbar" role="tablist" aria-label="Chọn học phần">
-    <button type="button" class="tabbtn" id="tabbtn-kt330h" role="tab" aria-selected="true" aria-controls="tab-kt330h">KT330H · Khởi sự doanh nghiệp</button>
-    <button type="button" class="tabbtn" id="tabbtn-kt338" role="tab" aria-selected="false" aria-controls="tab-kt338">KT338 · Đầu tư quốc tế</button>
-    <button type="button" class="tabbtn" id="tabbtn-nhanvat" role="tab" aria-selected="false" aria-controls="tab-nhanvat">🎭 Nhân vật BizOn</button>
+    <button type="button" class="tabbtn" id="tabbtn-kt330h" role="tab" aria-selected="true" aria-controls="tab-kt330h" data-vi="KT330H · Khởi sự doanh nghiệp" data-en="KT330H · Entrepreneurship">KT330H · Khởi sự doanh nghiệp</button>
+    <button type="button" class="tabbtn" id="tabbtn-kt338" role="tab" aria-selected="false" aria-controls="tab-kt338" data-vi="KT338 · Đầu tư quốc tế" data-en="KT338 · International Investment">KT338 · Đầu tư quốc tế</button>
+    <button type="button" class="tabbtn" id="tabbtn-nhanvat" role="tab" aria-selected="false" aria-controls="tab-nhanvat" data-vi="🎭 Nhân vật BizOn" data-en="🎭 BizOn Characters">🎭 Nhân vật BizOn</button>
   </div>
 
   <div id="tab-kt330h" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-kt330h">
 
   <header class="hero">
-    <p class="eyebrow">KT330H · Khởi sự doanh nghiệp · HK1 2026–2027</p>
-    <h1>Chào mừng bạn đến với học phần Khởi sự doanh nghiệp</h1>
-    <p class="lede">Một trang duy nhất để biết học phần này học gì, chuẩn đầu ra ra sao, 12 tuần diễn
+    <p class="eyebrow" data-vi="KT330H · Khởi sự doanh nghiệp · HK1 2026–2027" data-en="KT330H · Entrepreneurship · Fall 2026–2027">KT330H · Khởi sự doanh nghiệp · HK1 2026–2027</p>
+    <h1 data-vi="Chào mừng bạn đến với học phần Khởi sự doanh nghiệp" data-en="Welcome to Entrepreneurship">Chào mừng bạn đến với học phần Khởi sự doanh nghiệp</h1>
+    <p class="lede" data-vi="Một trang duy nhất để biết học phần này học gì, chuẩn đầu ra ra sao, 12 tuần diễn ra thế nào, và bạn sẽ dùng những công cụ nào — trước khi bước vào buổi học đầu tiên." data-en="One page to see what this course covers, its learning outcomes, how the 12 weeks unfold, and which tools you'll use — before your first class.">Một trang duy nhất để biết học phần này học gì, chuẩn đầu ra ra sao, 12 tuần diễn
       ra thế nào, và bạn sẽ dùng những công cụ nào — trước khi bước vào buổi học đầu tiên.</p>
     <div class="meta-row">
-      <div class="meta"><b>PGS.TS. Phan Anh Tú</b>Giảng viên</div>
-      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b>Trợ giảng cấu phần thực hành</div>
-      <div class="meta"><b>KT2322F1 · KT2322F2</b>2 lớp chất lượng cao</div>
-      <div class="meta"><b>12 tuần</b>2 buổi/tuần, 3 tín chỉ</div>
+      <div class="meta"><b>PGS.TS. Phan Anh Tú</b><span data-vi="Giảng viên" data-en="Lecturer">Giảng viên</span></div>
+      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b><span data-vi="Trợ giảng cấu phần thực hành" data-en="Teaching assistant, practicum component">Trợ giảng cấu phần thực hành</span></div>
+      <div class="meta"><b>KT2322F1 · KT2322F2</b><span data-vi="2 lớp chất lượng cao" data-en="2 honors classes">2 lớp chất lượng cao</span></div>
+      <div class="meta"><b data-vi="12 tuần" data-en="12 weeks">12 tuần</b><span data-vi="2 buổi/tuần, 3 tín chỉ" data-en="2 sessions/week, 3 credits">2 buổi/tuần, 3 tín chỉ</span></div>
     </div>
   </header>
 
   <section>
-    <h2>Học phần này về gì</h2>
+    <h2 data-vi="Học phần này về gì" data-en="What this course is about">Học phần này về gì</h2>
     <div class="card" style="padding:20px">
-      <p style="margin:0 0 10px">Học phần dạy khởi sự doanh nghiệp qua trải nghiệm thật: mỗi đội điều
+      <p style="margin:0 0 10px" data-vi-html="Học phần dạy khởi sự doanh nghiệp qua trải nghiệm thật: mỗi đội điều hành một công ty giả lập qua &lt;b&gt;2 mùa × 6 vòng quyết định&lt;/b&gt; trong game &lt;b&gt;BizOn Bật Nghiệp&lt;/b&gt;, rồi &lt;b&gt;thuyết trình Dự án khởi nghiệp&lt;/b&gt; của chính đội mình trước lớp — đúng những gì một người sáng lập thật phải làm: đọc thị trường trong lúc thiếu thông tin, ra quyết định theo vai trò (CEO/CMO/COO/CFO/SEC), và bảo vệ con số trước người nghe." data-en-html="This course teaches entrepreneurship through real experience: each team runs a simulated company across &lt;b&gt;2 Seasons × 6 decision rounds&lt;/b&gt; in the &lt;b&gt;BizOn Bật Nghiệp&lt;/b&gt; game, then &lt;b&gt;pitches its own Startup Project&lt;/b&gt; to the class — exactly what a real founder must do: reading the market under uncertainty, deciding by role (CEO/CMO/COO/CFO/SEC), and defending the numbers in front of an audience.">Học phần dạy khởi sự doanh nghiệp qua trải nghiệm thật: mỗi đội điều
         hành một công ty giả lập qua <b>2 mùa × 6 vòng quyết định</b> trong game
         <b>BizOn Bật Nghiệp</b>, rồi <b>thuyết trình Dự án khởi nghiệp</b> của chính đội mình trước
         lớp — đúng những gì một người sáng lập thật phải làm: đọc thị trường trong lúc thiếu thông
         tin, ra quyết định theo vai trò (CEO/CMO/COO/CFO/SEC), và bảo vệ con số trước người nghe.</p>
-      <p style="margin:0;color:var(--muted)">Nội dung lý thuyết đi song song mỗi tuần: cơ hội kinh
+      <p style="margin:0;color:var(--muted)" data-vi="Nội dung lý thuyết đi song song mỗi tuần: cơ hội kinh doanh, mô hình kinh doanh, huy động vốn, marketing, vận hành và tài chính khởi sự — mỗi khái niệm đều được kiểm chứng ngay bằng quyết định thật của đội bạn trong game." data-en="Theory runs in parallel each week: business opportunity, business models, fundraising, marketing, operations and startup finance — every concept is immediately tested by your team's real decisions in the game.">Nội dung lý thuyết đi song song mỗi tuần: cơ hội kinh
         doanh, mô hình kinh doanh, huy động vốn, marketing, vận hành và tài chính khởi sự — mỗi khái
         niệm đều được kiểm chứng ngay bằng quyết định thật của đội bạn trong game.</p>
     </div>
   </section>
 
   <section>
-    <h2>Chuẩn đầu ra học phần (CLO)</h2>
+    <h2 data-vi="Chuẩn đầu ra học phần (CLO)" data-en="Course Learning Outcomes (CLO)">Chuẩn đầu ra học phần (CLO)</h2>
     <div class="clo-grid">
-      <div class="clo kiến-thức"><span class="id">CO1</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Mô tả doanh nhân làm gì và chỗ đứng trên thị trường.</p></div>
-      <div class="clo kiến-thức"><span class="id">CO2</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Nhận diện và đánh giá cơ hội khả thi để khởi sự.</p></div>
-      <div class="clo kiến-thức"><span class="id">CO3</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Lợi thế cạnh tranh, phân khúc, nghiên cứu để thích ứng sản phẩm.</p></div>
-      <div class="clo kiến-thức"><span class="id">CO4</span><span class="tag">Kiến thức</span><p style="margin:.3em 0 0">Xây dựng business plan: marketing, vận hành, nhân sự, tài chính.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO5</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Cost/benefit, SWOT, feasibility để quyết định.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO6</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Lập Business Model Canvas (9 ô).</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO7</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Phân khúc, nghiên cứu, định vị — kế hoạch nghiên cứu thị trường.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO8</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">4P và phân tích hòa vốn cho marketing plan.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO9</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">EOU, NPV, nợ/vốn, dòng tiền, tỷ số, chi phí khởi sự.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO10</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Vận hành và việc của nhà quản lý để hoàn tất plan.</p></div>
-      <div class="clo kỹ-năng"><span class="id">CO11</span><span class="tag">Kỹ năng</span><p style="margin:.3em 0 0">Giao tiếp, teamwork, giải quyết vấn đề, lãnh đạo.</p></div>
-      <div class="clo thái-độ"><span class="id">CO12</span><span class="tag">Thái độ</span><p style="margin:.3em 0 0">Thái độ, tự chủ, trách nhiệm, đạo đức, phục vụ cộng đồng.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO1</span><span class="tag" data-vi="Kiến thức" data-en="Knowledge">Kiến thức</span><p style="margin:.3em 0 0" data-vi="Mô tả doanh nhân làm gì và chỗ đứng trên thị trường." data-en="Describe what entrepreneurs do and their place in the market.">Mô tả doanh nhân làm gì và chỗ đứng trên thị trường.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO2</span><span class="tag" data-vi="Kiến thức" data-en="Knowledge">Kiến thức</span><p style="margin:.3em 0 0" data-vi="Nhận diện và đánh giá cơ hội khả thi để khởi sự." data-en="Identify and evaluate viable opportunities to start a business.">Nhận diện và đánh giá cơ hội khả thi để khởi sự.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO3</span><span class="tag" data-vi="Kiến thức" data-en="Knowledge">Kiến thức</span><p style="margin:.3em 0 0" data-vi="Lợi thế cạnh tranh, phân khúc, nghiên cứu để thích ứng sản phẩm." data-en="Competitive advantage, segmentation and research to adapt a product.">Lợi thế cạnh tranh, phân khúc, nghiên cứu để thích ứng sản phẩm.</p></div>
+      <div class="clo kiến-thức"><span class="id">CO4</span><span class="tag" data-vi="Kiến thức" data-en="Knowledge">Kiến thức</span><p style="margin:.3em 0 0" data-vi="Xây dựng business plan: marketing, vận hành, nhân sự, tài chính." data-en="Build a business plan: marketing, operations, staffing, finance.">Xây dựng business plan: marketing, vận hành, nhân sự, tài chính.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO5</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="Cost/benefit, SWOT, feasibility để quyết định." data-en="Cost/benefit, SWOT and feasibility analysis to support decisions.">Cost/benefit, SWOT, feasibility để quyết định.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO6</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="Lập Business Model Canvas (9 ô)." data-en="Build a Business Model Canvas (9 blocks).">Lập Business Model Canvas (9 ô).</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO7</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="Phân khúc, nghiên cứu, định vị — kế hoạch nghiên cứu thị trường." data-en="Segmentation, research and positioning — a market research plan.">Phân khúc, nghiên cứu, định vị — kế hoạch nghiên cứu thị trường.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO8</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="4P và phân tích hòa vốn cho marketing plan." data-en="The 4Ps and break-even analysis for a marketing plan.">4P và phân tích hòa vốn cho marketing plan.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO9</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="EOU, NPV, nợ/vốn, dòng tiền, tỷ số, chi phí khởi sự." data-en="EOU, NPV, debt/equity, cash flow, ratios, startup costs.">EOU, NPV, nợ/vốn, dòng tiền, tỷ số, chi phí khởi sự.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO10</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="Vận hành và việc của nhà quản lý để hoàn tất plan." data-en="Operations and management tasks to complete the plan.">Vận hành và việc của nhà quản lý để hoàn tất plan.</p></div>
+      <div class="clo kỹ-năng"><span class="id">CO11</span><span class="tag" data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span><p style="margin:.3em 0 0" data-vi="Giao tiếp, teamwork, giải quyết vấn đề, lãnh đạo." data-en="Communication, teamwork, problem-solving, leadership.">Giao tiếp, teamwork, giải quyết vấn đề, lãnh đạo.</p></div>
+      <div class="clo thái-độ"><span class="id">CO12</span><span class="tag" data-vi="Thái độ" data-en="Attitude">Thái độ</span><p style="margin:.3em 0 0" data-vi="Thái độ, tự chủ, trách nhiệm, đạo đức, phục vụ cộng đồng." data-en="Attitude, autonomy, responsibility, ethics, community service.">Thái độ, tự chủ, trách nhiệm, đạo đức, phục vụ cộng đồng.</p></div>
     </div>
   </section>
 
   <section>
-    <h2>Lịch 12 tuần — nội dung từng buổi</h2>
-    <p class="lede" style="margin:0 0 12px">Mỗi tuần có 2 buổi thực hành, nội dung giống nhau cho cả hai
+    <h2 data-vi="Lịch 12 tuần — nội dung từng buổi" data-en="12-week schedule — session by session">Lịch 12 tuần — nội dung từng buổi</h2>
+    <p class="lede" style="margin:0 0 12px" data-vi-html="Mỗi tuần có 2 buổi thực hành, nội dung giống nhau cho cả hai lớp — chỉ khác ngày: &lt;b&gt;KT2322F1&lt;/b&gt; học Buổi A vào Thứ Ba, Buổi B vào Thứ Năm; &lt;b&gt;KT2322F2&lt;/b&gt; học Buổi A vào Thứ Tư, Buổi B vào Thứ Sáu. Ngày/phòng/tiết cụ thể: xem app kế hoạch triển khai (link bên dưới)." data-en-html="Each week has 2 practicum sessions, same content for both classes — only the day differs: &lt;b&gt;KT2322F1&lt;/b&gt; has Session A on Tuesday, Session B on Thursday; &lt;b&gt;KT2322F2&lt;/b&gt; has Session A on Wednesday, Session B on Friday. Exact date/room/period: see the rollout-plan app (link below).">Mỗi tuần có 2 buổi thực hành, nội dung giống nhau cho cả hai
       lớp — chỉ khác ngày: <b>KT2322F1</b> học Buổi A vào Thứ Ba, Buổi B vào Thứ Năm;
       <b>KT2322F2</b> học Buổi A vào Thứ Tư, Buổi B vào Thứ Sáu. Ngày/phòng/tiết cụ thể: xem app kế
       hoạch triển khai (link bên dưới).</p>
     <div class="card" style="padding:8px 16px">
       <div style="overflow-x:auto">
         <table class="weeks">
-          <colgroup><col style="width:44px"><col style="width:38px"><col></colgroup>
-          <thead><tr><th>Tuần</th><th>Buổi</th><th>Nội dung buổi thực hành</th></tr></thead>
+          <colgroup><col style="width:42px"><col style="width:62px"><col></colgroup>
+          <thead><tr><th data-vi="Tuần" data-en="Week">Tuần</th><th data-vi="Buổi" data-en="Session">Buổi</th><th data-vi="Nội dung buổi thực hành" data-en="Session content">Nội dung buổi thực hành</th></tr></thead>
           <tbody>
-            <tr><td rowspan="2"><span class="wk">1</span></td><td class="buoi">A</td><td>Cài đặt phần mềm, cấp tài khoản, chia đội cố định cả kỳ, đặt tên công ty và khẩu hiệu; khảo sát trước.</td></tr>
-            <tr><td class="buoi">B</td><td>Chơi thử Vòng 0 — làm quen giao diện và 5 vai trò; nhận Mã lớp.</td></tr>
-            <tr><td rowspan="2"><span class="wk">2</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
-            <tr><td rowspan="2"><span class="wk">3</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
-            <tr><td rowspan="2"><span class="wk">4</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 6 — Biến cố thị trường và quản trị rủi ro.</td></tr>
-            <tr><td rowspan="2"><span class="wk">5</span></td><td class="buoi">A</td><td>Sơ kết Mùa 1 — phân tích tab «Tổng kết», nộp báo cáo «Chi phí đối thủ» của đội.</td></tr>
-            <tr><td class="buoi">B</td><td>Đổi vai trong đội + Vòng khởi động Mùa 2.</td></tr>
-            <tr><td rowspan="2"><span class="wk">6</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
-            <tr><td rowspan="2"><span class="wk">7</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
-            <tr><td rowspan="2"><span class="wk">8</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
-            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 6 — Biến cố và quản trị rủi ro; chốt bảng tổng sắp hai mùa.</td></tr>
-            <tr><td rowspan="2"><span class="wk close">9</span></td><td class="buoi">A</td><td>Thuyết trình Dự án khởi nghiệp (business plan) của đội — 7–8 đội × 8 phút/đội, chia theo vai (khung PASTOR); GV chấm 20% pitching ngay tại buổi.</td></tr>
-            <tr><td class="buoi">B</td><td>Chương 9 — Using Financial Statements to Guide a Business (đọc báo cáo tài chính, dòng tiền, ROI).</td></tr>
-            <tr><td rowspan="2"><span class="wk close">10</span></td><td class="buoi">A</td><td>Chương 10 — Financing Strategy &amp; Tactics (chiến lược huy động vốn, vốn chủ so với vay, cổ phiếu/trái phiếu).</td></tr>
-            <tr><td class="buoi">B</td><td>Chương 11 — Operating for Success (cơ cấu pháp lý, hợp đồng, sở hữu trí tuệ, quản trị rủi ro).</td></tr>
-            <tr><td rowspan="2"><span class="wk close">11</span></td><td class="buoi">A</td><td>Chương 12 — Management, Leadership, Ethical Practices (vận hành chuỗi cung ứng, chất lượng, đạo đức kinh doanh).</td></tr>
-            <tr><td class="buoi">B</td><td>Tổng kết: so sánh Mùa 1 với Mùa 2 của chính đội mình, trao huy hiệu, khảo sát sau, hướng dẫn ôn thi.</td></tr>
-            <tr><td rowspan="2"><span class="wk exam">12</span></td><td class="buoi">A</td><td>Buổi dự trữ — chỉ tổ chức khi cần bù bài.</td></tr>
-            <tr><td class="buoi">B</td><td>THI KẾT THÚC HỌC PHẦN TRÊN MÁY — ván cá nhân 6 vòng nhịp nhanh + bài phân tích viết trên máy.</td></tr>
+            <tr><td rowspan="2"><span class="wk">1</span></td><td class="buoi">A</td><td data-vi="Cài đặt phần mềm, cấp tài khoản, chia đội cố định cả kỳ, đặt tên công ty và khẩu hiệu; khảo sát trước." data-en="Install the software, issue accounts, form fixed teams for the term, name the company and write a slogan; pre-survey.">Cài đặt phần mềm, cấp tài khoản, chia đội cố định cả kỳ, đặt tên công ty và khẩu hiệu; khảo sát trước.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Chơi thử Vòng 0 — làm quen giao diện và 5 vai trò; nhận Mã lớp." data-en="Play trial Round 0 — get familiar with the interface and the 5 roles; receive the Class Code.">Chơi thử Vòng 0 — làm quen giao diện và 5 vai trò; nhận Mã lớp.</td></tr>
+            <tr><td rowspan="2"><span class="wk">2</span></td><td class="buoi">A</td><td data-vi="Mùa 1 · Vòng 1 — Giá bán và độ co giãn của cầu." data-en="Season 1 · Round 1 — Price and demand elasticity.">Mùa 1 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 1 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn." data-en="Season 1 · Round 2 — Cost structure and break-even point.">Mùa 1 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
+            <tr><td rowspan="2"><span class="wk">3</span></td><td class="buoi">A</td><td data-vi="Mùa 1 · Vòng 3 — Marketing và định vị thương hiệu." data-en="Season 1 · Round 3 — Marketing and brand positioning.">Mùa 1 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 1 · Vòng 4 — Vận hành, nhân sự và năng suất." data-en="Season 1 · Round 4 — Operations, staffing and productivity.">Mùa 1 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
+            <tr><td rowspan="2"><span class="wk">4</span></td><td class="buoi">A</td><td data-vi="Mùa 1 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính." data-en="Season 1 · Round 5 — Funding sources and financial leverage.">Mùa 1 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 1 · Vòng 6 — Biến cố thị trường và quản trị rủi ro." data-en="Season 1 · Round 6 — Market events and risk management.">Mùa 1 · Vòng 6 — Biến cố thị trường và quản trị rủi ro.</td></tr>
+            <tr><td rowspan="2"><span class="wk">5</span></td><td class="buoi">A</td><td data-vi="Sơ kết Mùa 1 — phân tích tab «Tổng kết», nộp báo cáo «Chi phí đối thủ» của đội." data-en="Season 1 wrap-up — analyze the &quot;Summary&quot; tab, submit the team's &quot;Competitor Cost&quot; report.">Sơ kết Mùa 1 — phân tích tab «Tổng kết», nộp báo cáo «Chi phí đối thủ» của đội.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Đổi vai trong đội + Vòng khởi động Mùa 2." data-en="Rotate roles within the team + Season 2 kickoff round.">Đổi vai trong đội + Vòng khởi động Mùa 2.</td></tr>
+            <tr><td rowspan="2"><span class="wk">6</span></td><td class="buoi">A</td><td data-vi="Mùa 2 · Vòng 1 — Giá bán và độ co giãn của cầu." data-en="Season 2 · Round 1 — Price and demand elasticity.">Mùa 2 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 2 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn." data-en="Season 2 · Round 2 — Cost structure and break-even point.">Mùa 2 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
+            <tr><td rowspan="2"><span class="wk">7</span></td><td class="buoi">A</td><td data-vi="Mùa 2 · Vòng 3 — Marketing và định vị thương hiệu." data-en="Season 2 · Round 3 — Marketing and brand positioning.">Mùa 2 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 2 · Vòng 4 — Vận hành, nhân sự và năng suất." data-en="Season 2 · Round 4 — Operations, staffing and productivity.">Mùa 2 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
+            <tr><td rowspan="2"><span class="wk">8</span></td><td class="buoi">A</td><td data-vi="Mùa 2 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính." data-en="Season 2 · Round 5 — Funding sources and financial leverage.">Mùa 2 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Mùa 2 · Vòng 6 — Biến cố và quản trị rủi ro; chốt bảng tổng sắp hai mùa." data-en="Season 2 · Round 6 — Events and risk management; final two-season leaderboard.">Mùa 2 · Vòng 6 — Biến cố và quản trị rủi ro; chốt bảng tổng sắp hai mùa.</td></tr>
+            <tr><td rowspan="2"><span class="wk close">9</span></td><td class="buoi">A</td><td data-vi="Thuyết trình Dự án khởi nghiệp (business plan) của đội — 7–8 đội × 8 phút/đội, chia theo vai (khung PASTOR); GV chấm 20% pitching ngay tại buổi." data-en="Team Startup Project (business plan) pitches — 7–8 teams × 8 minutes each, split by role (PASTOR framework); instructor grades the 20% pitching component on the spot.">Thuyết trình Dự án khởi nghiệp (business plan) của đội — 7–8 đội × 8 phút/đội, chia theo vai (khung PASTOR); GV chấm 20% pitching ngay tại buổi.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Chương 9 — Using Financial Statements to Guide a Business (đọc báo cáo tài chính, dòng tiền, ROI)." data-en="Chapter 9 — Using Financial Statements to Guide a Business (reading financial statements, cash flow, ROI).">Chương 9 — Using Financial Statements to Guide a Business (đọc báo cáo tài chính, dòng tiền, ROI).</td></tr>
+            <tr><td rowspan="2"><span class="wk close">10</span></td><td class="buoi">A</td><td data-vi="Chương 10 — Financing Strategy &amp; Tactics (chiến lược huy động vốn, vốn chủ so với vay, cổ phiếu/trái phiếu)." data-en="Chapter 10 — Financing Strategy &amp; Tactics (fundraising strategy, equity vs. debt, stocks/bonds).">Chương 10 — Financing Strategy &amp; Tactics (chiến lược huy động vốn, vốn chủ so với vay, cổ phiếu/trái phiếu).</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Chương 11 — Operating for Success (cơ cấu pháp lý, hợp đồng, sở hữu trí tuệ, quản trị rủi ro)." data-en="Chapter 11 — Operating for Success (legal structure, contracts, intellectual property, risk management).">Chương 11 — Operating for Success (cơ cấu pháp lý, hợp đồng, sở hữu trí tuệ, quản trị rủi ro).</td></tr>
+            <tr><td rowspan="2"><span class="wk close">11</span></td><td class="buoi">A</td><td data-vi="Chương 12 — Management, Leadership, Ethical Practices (vận hành chuỗi cung ứng, chất lượng, đạo đức kinh doanh)." data-en="Chapter 12 — Management, Leadership, Ethical Practices (supply chain operations, quality, business ethics).">Chương 12 — Management, Leadership, Ethical Practices (vận hành chuỗi cung ứng, chất lượng, đạo đức kinh doanh).</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="Tổng kết: so sánh Mùa 1 với Mùa 2 của chính đội mình, trao huy hiệu, khảo sát sau, hướng dẫn ôn thi." data-en="Wrap-up: compare your team's Season 1 vs. Season 2, award badges, post-survey, exam review guidance.">Tổng kết: so sánh Mùa 1 với Mùa 2 của chính đội mình, trao huy hiệu, khảo sát sau, hướng dẫn ôn thi.</td></tr>
+            <tr><td rowspan="2"><span class="wk exam">12</span></td><td class="buoi">A</td><td data-vi="Buổi dự trữ — chỉ tổ chức khi cần bù bài." data-en="Reserve session — held only if a make-up class is needed.">Buổi dự trữ — chỉ tổ chức khi cần bù bài.</td></tr>
+            <tr><td class="buoi">B</td><td data-vi="THI KẾT THÚC HỌC PHẦN TRÊN MÁY — ván cá nhân 6 vòng nhịp nhanh + bài phân tích viết trên máy." data-en="FINAL EXAM ON COMPUTER — a fast-paced 6-round individual game + a written analysis on the computer.">THI KẾT THÚC HỌC PHẦN TRÊN MÁY — ván cá nhân 6 vòng nhịp nhanh + bài phân tích viết trên máy.</td></tr>
           </tbody>
         </table>
       </div>
     </div>
-    <p class="no-print-hint">Lịch chi tiết theo ngày/phòng/tiết cho từng lớp: xem app kế hoạch triển khai (link bên dưới).</p>
+    <p class="no-print-hint" data-vi="Lịch chi tiết theo ngày/phòng/tiết cho từng lớp: xem app kế hoạch triển khai (link bên dưới)." data-en="Detailed date/room/period schedule per class: see the rollout-plan app (link below).">Lịch chi tiết theo ngày/phòng/tiết cho từng lớp: xem app kế hoạch triển khai (link bên dưới).</p>
   </section>
 
   <section>
-    <h2>Cách tính điểm — 10 / 20 / 20 / 50</h2>
+    <h2 data-vi="Cách tính điểm — 10 / 20 / 20 / 50" data-en="Grading — 10 / 20 / 20 / 50">Cách tính điểm — 10 / 20 / 20 / 50</h2>
     <div class="rubric">
-      <div class="box disc"><div class="pct">10%</div><div class="lbl">Thảo luận / chuyên cần</div></div>
-      <div class="box game"><div class="pct">20%</div><div class="lbl">Điểm chơi mô phỏng<br>(2 Mùa × 6 vòng)</div></div>
-      <div class="box pitch"><div class="pct">20%</div><div class="lbl">Pitching<br>Dự án khởi nghiệp</div></div>
-      <div class="box exam"><div class="pct">50%</div><div class="lbl">Thi cuối kỳ</div></div>
+      <div class="box disc"><div class="pct">10%</div><div class="lbl" data-vi="Thảo luận / chuyên cần" data-en="Discussion / attendance">Thảo luận / chuyên cần</div></div>
+      <div class="box game"><div class="pct">20%</div><div class="lbl" data-vi-html="Điểm chơi mô phỏng&lt;br&gt;(2 Mùa × 6 vòng)" data-en-html="Simulation score&lt;br&gt;(2 Seasons × 6 rounds)">Điểm chơi mô phỏng<br>(2 Mùa × 6 vòng)</div></div>
+      <div class="box pitch"><div class="pct">20%</div><div class="lbl" data-vi-html="Pitching&lt;br&gt;Dự án khởi nghiệp" data-en-html="Pitching&lt;br&gt;Startup Project">Pitching<br>Dự án khởi nghiệp</div></div>
+      <div class="box exam"><div class="pct">50%</div><div class="lbl" data-vi="Thi cuối kỳ" data-en="Final exam">Thi cuối kỳ</div></div>
     </div>
   </section>
 
   <section>
-    <h2>Công cụ học tập</h2>
+    <h2 data-vi="Công cụ học tập" data-en="Learning tools">Công cụ học tập</h2>
     <div class="links">
       <a class="linkcard" href="https://thuyhuongctu.github.io/BizOn/game.html" target="_blank" rel="noreferrer">
         <div class="ico">🐮</div>
         <h3>BizOn Bật Nghiệp</h3>
-        <p>Game mô phỏng 2 Mùa × 6 vòng — nơi đội bạn ra quyết định thật mỗi tuần.</p>
-        <span class="go">Vào game →</span>
+        <p data-vi="Game mô phỏng 2 Mùa × 6 vòng — nơi đội bạn ra quyết định thật mỗi tuần." data-en="A 2-Season × 6-round simulation game — where your team makes real decisions every week.">Game mô phỏng 2 Mùa × 6 vòng — nơi đội bạn ra quyết định thật mỗi tuần.</p>
+        <span class="go" data-vi="Vào game →" data-en="Enter the game →">Vào game →</span>
       </a>
       <a class="linkcard" href="https://thuyhuongctu.github.io/EnQuiz/" target="_blank" rel="noreferrer">
         <div class="ico">📝</div>
         <h3>EnQuiz</h3>
-        <p>Ôn thi trắc nghiệm 300 câu, 5 chương — luyện đề có tính giờ, giải thích ngay từng câu.</p>
-        <span class="go">Ôn tập →</span>
+        <p data-vi="Ôn thi trắc nghiệm 300 câu, 5 chương — luyện đề có tính giờ, giải thích ngay từng câu." data-en="300 multiple-choice practice questions across 5 chapters — timed practice sets with instant explanations.">Ôn thi trắc nghiệm 300 câu, 5 chương — luyện đề có tính giờ, giải thích ngay từng câu.</p>
+        <span class="go" data-vi="Ôn tập →" data-en="Practice →">Ôn tập →</span>
       </a>
       <a class="linkcard is-pending" href="https://thuyhuongctu.github.io/BizOn-Classroom_KT330H/" target="_blank" rel="noreferrer">
         <div class="ico">📅</div>
-        <h3>Lịch học chi tiết <span class="soon-badge">Sắp ra mắt</span></h3>
-        <p>Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm.
+        <h3><span data-vi="Lịch học chi tiết" data-en="Detailed schedule">Lịch học chi tiết</span> <span class="soon-badge" data-vi="Sắp ra mắt" data-en="Coming soon">Sắp ra mắt</span></h3>
+        <p data-vi="Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm. Trang đang chờ deploy, có thể chưa mở được ngay." data-en="Session-by-session schedule for classes F1/F2, teams and roles, full rubric — for instructors and students to consult. The page is pending deploy and may not be reachable yet.">Lịch từng buổi theo lớp F1/F2, đội và vai trò, rubric đầy đủ — dành cho GV, SV tham khảo thêm.
           Trang đang chờ deploy, có thể chưa mở được ngay.</p>
-        <span class="go">Xem lịch →</span>
+        <span class="go" data-vi="Xem lịch →" data-en="View schedule →">Xem lịch →</span>
       </a>
     </div>
   </section>
@@ -303,30 +350,30 @@
   <div id="tab-kt338" class="tabpanel" role="tabpanel" aria-labelledby="tabbtn-kt338" hidden>
 
   <header class="hero">
-    <p class="eyebrow">KT338 · Đầu tư quốc tế · HK1 2026–2027</p>
-    <h1>Học phần Đầu tư quốc tế</h1>
-    <p class="lede">Thông tin học phần này đang được cập nhật dần theo đề cương chính thức. Trang chỉ
+    <p class="eyebrow" data-vi="KT338 · Đầu tư quốc tế · HK1 2026–2027" data-en="KT338 · International Investment · Fall 2026–2027">KT338 · Đầu tư quốc tế · HK1 2026–2027</p>
+    <h1 data-vi="Học phần Đầu tư quốc tế" data-en="International Investment">Học phần Đầu tư quốc tế</h1>
+    <p class="lede" data-vi="Thông tin học phần này đang được cập nhật dần theo đề cương chính thức. Trang chỉ hiển thị những gì đã được xác nhận — các mục còn thiếu (CLO, rubric, lịch chi tiết từng tuần) sẽ được bổ sung khi có đủ thông tin." data-en="Information for this course is being filled in gradually against the official syllabus. This page only shows what has been confirmed — missing items (CLO, rubric, detailed weekly schedule) will be added once available.">Thông tin học phần này đang được cập nhật dần theo đề cương chính thức. Trang chỉ
       hiển thị những gì đã được xác nhận — các mục còn thiếu (CLO, rubric, lịch chi tiết từng tuần)
       sẽ được bổ sung khi có đủ thông tin.</p>
     <div class="meta-row">
-      <div class="meta"><b>PGS.TS. Phan Anh Tú</b>Giảng viên</div>
-      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b>Trợ giảng cấu phần thực hành</div>
-      <div class="meta"><b>KT33801</b>Nhóm 01 · 26 SV</div>
-      <div class="meta"><b>Thứ 3 &amp; Thứ 5</b>Phòng 301/MT</div>
+      <div class="meta"><b>PGS.TS. Phan Anh Tú</b><span data-vi="Giảng viên" data-en="Lecturer">Giảng viên</span></div>
+      <div class="meta"><b>NCS Đỗ Thuỳ Hương</b><span data-vi="Trợ giảng cấu phần thực hành" data-en="Teaching assistant, practicum component">Trợ giảng cấu phần thực hành</span></div>
+      <div class="meta"><b>KT33801</b><span data-vi="Nhóm 01 · 26 SV" data-en="Group 01 · 26 students">Nhóm 01 · 26 SV</span></div>
+      <div class="meta"><b data-vi="Thứ 3 &amp; Thứ 5" data-en="Tue &amp; Thu">Thứ 3 &amp; Thứ 5</b><span>Phòng 301/MT</span></div>
     </div>
   </header>
 
   <section>
-    <h2>Những mốc đã xác nhận</h2>
+    <h2 data-vi="Những mốc đã xác nhận" data-en="Confirmed milestones">Những mốc đã xác nhận</h2>
     <div class="card note-card">
       <ul class="confirmed">
-        <li><b>Lịch học hằng tuần:</b> Thứ Ba và Thứ Năm, phòng 301/MT.</li>
-        <li><b>Tuần 5 (06/10/2026):</b> buổi thực hành duy nhất tại phòng máy tính 2 — chơi game
+        <li data-vi-html="&lt;b&gt;Lịch học hằng tuần:&lt;/b&gt; Thứ Ba và Thứ Năm, phòng 301/MT." data-en-html="&lt;b&gt;Weekly schedule:&lt;/b&gt; Tuesday and Thursday, room 301/MT."><b>Lịch học hằng tuần:</b> Thứ Ba và Thứ Năm, phòng 301/MT.</li>
+        <li data-vi-html="&lt;b&gt;Tuần 5 (06/10/2026):&lt;/b&gt; buổi thực hành duy nhất tại phòng máy tính 2 — chơi game &lt;b&gt;Hộ Chiếu Thương Hiệu&lt;/b&gt;." data-en-html="&lt;b&gt;Week 5 (Oct 6, 2026):&lt;/b&gt; the only practicum session, in Computer Room 2 — playing the &lt;b&gt;Brand Passport&lt;/b&gt; game."><b>Tuần 5 (06/10/2026):</b> buổi thực hành duy nhất tại phòng máy tính 2 — chơi game
           <b>Hộ Chiếu Thương Hiệu</b>.</li>
-        <li><b>Tuần 11 (17/11/2026):</b> thi kết thúc học phần, hình thức trên máy.</li>
+        <li data-vi-html="&lt;b&gt;Tuần 11 (17/11/2026):&lt;/b&gt; thi kết thúc học phần, hình thức trên máy." data-en-html="&lt;b&gt;Week 11 (Nov 17, 2026):&lt;/b&gt; final exam, on-computer format."><b>Tuần 11 (17/11/2026):</b> thi kết thúc học phần, hình thức trên máy.</li>
       </ul>
     </div>
-    <p class="no-print-hint">Chưa có CLO và bảng điểm chi tiết cho KT338 tại thời điểm này — sẽ cập nhật
+    <p class="no-print-hint" data-vi="Chưa có CLO và bảng điểm chi tiết cho KT338 tại thời điểm này — sẽ cập nhật khi đề cương chính thức được đối chiếu." data-en="CLOs and a detailed grading table for KT338 are not yet available — will be updated once cross-checked against the official syllabus.">Chưa có CLO và bảng điểm chi tiết cho KT338 tại thời điểm này — sẽ cập nhật
       khi đề cương chính thức được đối chiếu.</p>
   </section>
 
@@ -336,9 +383,9 @@
   <div class="clay">
 
     <header class="hero" style="padding-top:8px">
-      <p class="eyebrow" style="color:var(--c-primary)">BizOn Bật Nghiệp · Thế giới nhân vật</p>
-      <h1 style="color:var(--c-text)">Gặp gỡ dàn nhân vật BizOn</h1>
-      <p class="lede">Trước khi vào vòng chơi đầu tiên, làm quen với những gương mặt bạn sẽ gặp trong
+      <p class="eyebrow" style="color:var(--c-primary)" data-vi="BizOn Bật Nghiệp · Thế giới nhân vật" data-en="BizOn Bật Nghiệp · Character World">BizOn Bật Nghiệp · Thế giới nhân vật</p>
+      <h1 style="color:var(--c-text)" data-vi="Gặp gỡ dàn nhân vật BizOn" data-en="Meet the BizOn cast">Gặp gỡ dàn nhân vật BizOn</h1>
+      <p class="lede" data-vi="Trước khi vào vòng chơi đầu tiên, làm quen với những gương mặt bạn sẽ gặp trong game — từ cố vấn AI luôn giải thích &quot;Vì sao?&quot; sau mỗi vòng, đến 5 vai trò bạn sẽ đảm nhiệm trong đội." data-en="Before your first round, meet the faces you'll encounter in the game — from the AI advisor who always explains &quot;Why?&quot; after every round, to the 5 roles you'll take on in your team.">Trước khi vào vòng chơi đầu tiên, làm quen với những gương mặt bạn sẽ gặp trong
         game — từ cố vấn AI luôn giải thích "Vì sao?" sau mỗi vòng, đến 5 vai trò bạn sẽ đảm nhiệm
         trong đội.</p>
     </header>
@@ -347,85 +394,95 @@
       <video autoplay muted loop playsinline poster="posters/lumina-workshop.jpg">
         <source src="video/lumina-loop.mp4" type="video/mp4">
       </video>
-      <figcaption>Lumina — cố vấn AI đất sét 3D của BizOn Bật Nghiệp — trong xưởng bên sông.</figcaption>
+      <figcaption data-vi="Lumina — cố vấn AI đất sét 3D của BizOn Bật Nghiệp — trong xưởng bên sông." data-en="Lumina — the 3D-clay AI advisor of BizOn Bật Nghiệp — in her riverside workshop.">Lumina — cố vấn AI đất sét 3D của BizOn Bật Nghiệp — trong xưởng bên sông.</figcaption>
     </figure>
 
     <section>
-      <h2>Nhân vật chính</h2>
+      <h2 data-vi="Nhân vật chính" data-en="Main characters">Nhân vật chính</h2>
       <div class="clay-grid">
         <div class="clay-panel clay-card">
           <img src="characters/lumina-ao-dai-wave.webp" alt="Lumina vẫy tay chào">
           <h3>Lumina</h3>
-          <p>Cố vấn AI của BizOn Bật Nghiệp. Sau mỗi vòng chơi, bấm nút «Vì sao?» của Lumina để nghe
+          <p data-vi="Cố vấn AI của BizOn Bật Nghiệp. Sau mỗi vòng chơi, bấm nút «Vì sao?» của Lumina để nghe giải thích kết quả thay vì chỉ đọc con số." data-en="The AI advisor of BizOn Bật Nghiệp. After every round, tap Lumina's &quot;Why?&quot; button to hear the results explained instead of just reading the numbers.">Cố vấn AI của BizOn Bật Nghiệp. Sau mỗi vòng chơi, bấm nút «Vì sao?» của Lumina để nghe
             giải thích kết quả thay vì chỉ đọc con số.</p>
         </div>
         <div class="clay-panel clay-card">
           <img src="characters/anh-tu-ao-dai-welcome-cut.webp" alt="Nhân vật Anh Tú chào đón">
           <h3>Anh Tú</h3>
-          <p>Nhân vật dẫn chuyện, xuất hiện ở các màn chào hỏi và hướng dẫn trong game.</p>
+          <p data-vi="Nhân vật dẫn chuyện, xuất hiện ở các màn chào hỏi và hướng dẫn trong game." data-en="The narrator character, appearing in the game's welcome and tutorial screens.">Nhân vật dẫn chuyện, xuất hiện ở các màn chào hỏi và hướng dẫn trong game.</p>
         </div>
         <div class="clay-panel clay-card">
           <img src="characters/bizon-duo-music.webp" alt="Cặp linh vật BizOn Duo">
           <h3>BizOn Duo</h3>
-          <p>Cặp linh vật xuất hiện ở phần âm nhạc/anthem của BizOn Bật Nghiệp.</p>
+          <p data-vi="Cặp linh vật xuất hiện ở phần âm nhạc/anthem của BizOn Bật Nghiệp." data-en="The mascot duo appearing in BizOn Bật Nghiệp's music/anthem segment.">Cặp linh vật xuất hiện ở phần âm nhạc/anthem của BizOn Bật Nghiệp.</p>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>5 vai trò trong đội chơi</h2>
-      <p class="lede" style="margin-bottom:0">Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm
+      <h2 data-vi="5 vai trò trong đội chơi" data-en="5 roles on a team">5 vai trò trong đội chơi</h2>
+      <p class="lede" style="margin-bottom:0" data-vi="Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm vai CDO — Trưởng phân tích dữ liệu, giữ Nhật ký đội và trình chiếu file Excel hoà vốn khi pitch." data-en="Every 5-person team fills exactly these 5 seats; a 6-person team adds a CDO — Chief Data Officer, who keeps the Team Journal and presents the break-even spreadsheet when pitching.">Mỗi đội 5 người giữ đúng 5 ghế này; đội 6 người có thêm
         vai CDO — Trưởng phân tích dữ liệu, giữ Nhật ký đội và trình chiếu file Excel hoà vốn khi pitch.</p>
       <div class="clay-roles">
         <div class="clay-panel clay-role">
           <img src="characters/team/ceo-cut.webp" alt="CEO">
-          <b>CEO</b><span>Nhà lãnh đạo tầm nhìn</span>
+          <b>CEO</b><span data-vi="Nhà lãnh đạo tầm nhìn" data-en="Visionary leader">Nhà lãnh đạo tầm nhìn</span>
         </div>
         <div class="clay-panel clay-role">
           <img src="characters/team/cfo-cut.webp" alt="CFO">
-          <b>CFO</b><span>Chiến lược gia tài chính</span>
+          <b>CFO</b><span data-vi="Chiến lược gia tài chính" data-en="Financial strategist">Chiến lược gia tài chính</span>
         </div>
         <div class="clay-panel clay-role">
           <img src="characters/team/cmo-cut.webp" alt="CMO">
-          <b>CMO</b><span>Phù thuỷ marketing</span>
+          <b>CMO</b><span data-vi="Phù thuỷ marketing" data-en="Marketing wizard">Phù thuỷ marketing</span>
         </div>
         <div class="clay-panel clay-role">
           <img src="characters/team/coo-cut.webp" alt="COO">
-          <b>COO</b><span>Chuyên gia vận hành</span>
+          <b>COO</b><span data-vi="Chuyên gia vận hành" data-en="Operations expert">Chuyên gia vận hành</span>
         </div>
         <div class="clay-panel clay-role">
           <img src="characters/team/sec-cut.webp" alt="SEC">
-          <b>SEC</b><span>Thư ký pháp chế</span>
+          <b>SEC</b><span data-vi="Thư ký pháp chế" data-en="Legal secretary">Thư ký pháp chế</span>
         </div>
         <div class="clay-cdo-note">
-          <b>CDO</b><span>Trưởng phân tích dữ liệu — chỉ ở đội 6 người, chưa có hình riêng.</span>
+          <b>CDO</b><span data-vi="Trưởng phân tích dữ liệu — chỉ ở đội 6 người, chưa có hình riêng." data-en="Chief Data Officer — 6-person teams only, no character art yet.">Trưởng phân tích dữ liệu — chỉ ở đội 6 người, chưa có hình riêng.</span>
         </div>
       </div>
     </section>
 
     <section>
-      <h2>Lumina "lên sóng"</h2>
+      <h2 data-vi='Lumina "lên sóng"' data-en='Lumina "on air"'>Lumina "lên sóng"</h2>
       <div class="clay-panel" style="padding:16px">
         <video class="clay-mv" controls preload="none" poster="posters/lumina-wave.jpg">
           <source src="video/lumina-bat-nghiep.mp4" type="video/mp4">
         </video>
-        <p class="clay-caption">Clip 20 giây từ MV "Lumina chào lớp" ghép hai cảnh cùng đoạn điệp khúc
+        <p class="clay-caption" data-vi='Clip 20 giây từ MV "Lumina chào lớp" ghép hai cảnh cùng đoạn điệp khúc anthem Bật Nghiệp.' data-en='A 20-second clip from the "Lumina Welcomes the Class" MV, cutting two scenes together over the Bật Nghiệp anthem chorus.'>Clip 20 giây từ MV "Lumina chào lớp" ghép hai cảnh cùng đoạn điệp khúc
           anthem Bật Nghiệp.</p>
       </div>
     </section>
 
     <a class="clay-panel clay-linkcard" href="https://thuyhuongctu.github.io/BizOn/game.html" target="_blank" rel="noreferrer">
-      <div>🐮 <b>Chơi cùng những nhân vật này trong BizOn Bật Nghiệp</b></div>
-      <span class="go">Vào game →</span>
+      <div>🐮 <b data-vi="Chơi cùng những nhân vật này trong BizOn Bật Nghiệp" data-en="Play alongside these characters in BizOn Bật Nghiệp">Chơi cùng những nhân vật này trong BizOn Bật Nghiệp</b></div>
+      <span class="go" data-vi="Vào game →" data-en="Enter the game →">Vào game →</span>
     </a>
 
   </div>
   </div>
 
   <footer>
-    <p>KT330H Khởi sự doanh nghiệp &amp; KT338 Đầu tư quốc tế · Khoa Kinh doanh quốc tế (KT8),
-      Trường Kinh tế, Đại học Cần Thơ · HK1 2026–2027.</p>
-    <p>© 2026 Đỗ Thùy Hương &amp; Phan Anh Tú. Mã nguồn:
+    <div class="footer-grid">
+      <div>
+        <strong>BizOn Classroom</strong><br>
+        <span data-vi="Trang tổng quan KT330H Khởi sự doanh nghiệp &amp; KT338 Đầu tư quốc tế — Khoa Kinh doanh quốc tế, Trường Kinh tế, Đại học Cần Thơ." data-en="Overview page for KT330H Entrepreneurship &amp; KT338 International Investment — School of International Business, College of Economics, Can Tho University.">Trang tổng quan KT330H Khởi sự doanh nghiệp &amp; KT338 Đầu tư quốc tế — Khoa Kinh
+          doanh quốc tế, Trường Kinh tế, Đại học Cần Thơ.</span>
+      </div>
+      <div>
+        <a href="https://thuyhuongctu.github.io/BizOn/" target="_blank" rel="noreferrer">BizOn</a> ·
+        <a href="https://thuyhuongctu.github.io/EnQuiz/" target="_blank" rel="noreferrer">EnQuiz</a> ·
+        <a href="https://thuyhuongctu.github.io/BizOn-Classroom_KT330H/" target="_blank" rel="noreferrer" data-vi="Kế hoạch GV" data-en="Instructor plan">Kế hoạch GV</a>
+      </div>
+    </div>
+    <p class="foot-copy">© 2026 Đỗ Thùy Hương &amp; Phan Anh Tú. <span data-vi="Mã nguồn:" data-en="Source code:">Mã nguồn:</span>
       <a href="https://github.com/thuyhuongctu/BizOn" target="_blank" rel="noreferrer">BizOn</a> ·
       <a href="https://github.com/thuyhuongctu/EnQuiz" target="_blank" rel="noreferrer">EnQuiz</a> ·
       <a href="https://github.com/thuyhuongctu/BizOn-Classroom_KT330H" target="_blank" rel="noreferrer">BizOn-Classroom_KT330H</a>.</p>
@@ -433,6 +490,19 @@
 
 </div>
 
+<script>
+window.BIZON_TOUR = [
+  { key:'intro', sel: '.dm-hero__body', vi: 'Xin chào! Mình là Lumina — hướng dẫn viên AI của BizOn. Đây là trang tổng quan hai học phần KT330H và KT338. Để mình dẫn bạn đi một vòng nhé.', en: "Hi! I'm Lumina, BizOn's AI guide. This is the overview page for two courses, KT330H and KT338. Let me walk you through it." },
+  { key:'tabs', sel: '.tabbar', vi: 'Ba thẻ ở đây chuyển giữa KT330H, KT338 và trang giới thiệu nhân vật. Bạn đang xem tab KT330H.', en: 'These three tabs switch between KT330H, KT338 and the character-introduction tab. You are currently viewing KT330H.' },
+  { key:'course', sel: '#tab-kt330h header.hero', vi: 'KT330H là học phần Khởi sự doanh nghiệp: mỗi đội điều hành một công ty giả lập, rồi thuyết trình dự án khởi nghiệp của chính mình.', en: 'KT330H is Entrepreneurship: each team runs a simulated company, then pitches its own startup project.' },
+  { key:'clo', sel: '.clo-grid', vi: 'Đây là 12 chuẩn đầu ra của học phần — chia làm ba nhóm: kiến thức, kỹ năng và thái độ.', en: 'These are the 12 course learning outcomes — grouped into knowledge, skills and attitude.' },
+  { key:'weeks', sel: 'table.weeks', vi: 'Bảng này liệt kê nội dung từng buổi trong 12 tuần — hai buổi mỗi tuần, mỗi buổi một nội dung riêng.', en: 'This table lists every session across 12 weeks — two sessions per week, each with its own content.' },
+  { key:'rubric', sel: '.rubric', vi: 'Điểm số chia làm bốn phần: chuyên cần, điểm mô phỏng, pitching dự án, và thi cuối kỳ.', en: 'Grading has four parts: attendance, simulation score, project pitching, and the final exam.' },
+  { key:'tools', sel: '.links', vi: 'Đây là các công cụ học tập: game mô phỏng, ôn tập trắc nghiệm, và lịch học chi tiết.', en: 'These are the learning tools: the simulation game, quiz practice, and the detailed schedule.' },
+  { key:'end', sel: 'footer', vi: 'Vậy là xong! Bạn có thể bấm nút sáng/tối và VI/EN ở góc trên để đổi giao diện. Chúc bạn học tốt!', en: "That's it! Use the theme and language buttons in the top corner to switch views. Enjoy the course!" }
+];
+window.BIZON_TOUR_OPTS = { art: 'characters/lumina-ao-dai-wave.webp' };
+</script>
 <script>
 (function(){
   var btn = document.getElementById('themebtn');
@@ -449,6 +519,31 @@
   });
 })();
 (function(){
+  var root = document.documentElement;
+  var langBtn = document.getElementById('langbtn');
+  function currentLang(){
+    try { return localStorage.getItem('kt330h-lang') === 'en' ? 'en' : 'vi'; } catch(e){ return 'vi'; }
+  }
+  var lang = currentLang();
+  function setLang(l){
+    lang = l;
+    root.lang = l;
+    root.dataset.lang = l;
+    document.querySelectorAll('[data-vi][data-en]').forEach(function(n){
+      n.textContent = l === 'en' ? n.dataset.en : n.dataset.vi;
+    });
+    document.querySelectorAll('[data-vi-html][data-en-html]').forEach(function(n){
+      n.innerHTML = l === 'en' ? n.dataset.enHtml : n.dataset.viHtml;
+    });
+    langBtn.textContent = l === 'vi' ? 'EN' : 'VI';
+    langBtn.setAttribute('aria-label', l === 'vi' ? 'Switch to English' : 'Chuyển sang tiếng Việt');
+    try { localStorage.setItem('kt330h-lang', l); } catch(e){}
+  }
+  setLang(lang);
+  langBtn.addEventListener('click', function(){ setLang(lang === 'vi' ? 'en' : 'vi'); });
+  window.toggleLang = function(){ setLang(lang === 'vi' ? 'en' : 'vi'); };
+})();
+(function(){
   var tabs = [
     { btn: document.getElementById('tabbtn-kt330h'), panel: document.getElementById('tab-kt330h') },
     { btn: document.getElementById('tabbtn-kt338'), panel: document.getElementById('tab-kt338') },
@@ -460,11 +555,20 @@
       t.btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
       t.panel.hidden = !isActive;
     });
+    if (active.panel) active.panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   tabs.forEach(function(t){
     t.btn.addEventListener('click', function(){ select(t); });
   });
+  document.querySelectorAll('[data-goto]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var id = b.getAttribute('data-goto');
+      var target = tabs.filter(function(t){ return t.panel && t.panel.id === id; })[0];
+      if (target) select(target);
+    });
+  });
 })();
 </script>
+<script src="js/site-tour.js"></script>
 </body>
 </html>
