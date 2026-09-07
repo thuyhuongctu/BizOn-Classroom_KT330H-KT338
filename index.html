@@ -58,11 +58,12 @@
   .kiến-thức{background:color-mix(in srgb, var(--disc) 10%, var(--card))}
   .kỹ-năng{background:color-mix(in srgb, var(--game) 8%, var(--card))}
   .thái-độ{background:color-mix(in srgb, var(--accent) 14%, var(--card))}
-  table.weeks{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.weeks{width:100%;border-collapse:collapse;font-size:13.5px;table-layout:fixed}
   table.weeks th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
     color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line)}
-  table.weeks td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.weeks td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:break-word}
   table.weeks tr:last-child td{border-bottom:none}
+  table.weeks td.buoi{text-align:center;font-weight:800;color:var(--muted)}
   .wk{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;
     border-radius:8px;background:var(--primary);color:var(--primary-ink);font-weight:800;font-size:12px;padding:0 6px}
   .wk.close{background:var(--pitch)}
@@ -220,24 +221,41 @@
   </section>
 
   <section>
-    <h2>Lịch 12 tuần — nhìn nhanh</h2>
+    <h2>Lịch 12 tuần — nội dung từng buổi</h2>
+    <p class="lede" style="margin:0 0 12px">Mỗi tuần có 2 buổi thực hành, nội dung giống nhau cho cả hai
+      lớp — chỉ khác ngày: <b>KT2322F1</b> học Buổi A vào Thứ Ba, Buổi B vào Thứ Năm;
+      <b>KT2322F2</b> học Buổi A vào Thứ Tư, Buổi B vào Thứ Sáu. Ngày/phòng/tiết cụ thể: xem app kế
+      hoạch triển khai (link bên dưới).</p>
     <div class="card" style="padding:8px 16px">
       <div style="overflow-x:auto">
         <table class="weeks">
-          <thead><tr><th>Tuần</th><th>Nội dung chính</th></tr></thead>
+          <colgroup><col style="width:44px"><col style="width:38px"><col></colgroup>
+          <thead><tr><th>Tuần</th><th>Buổi</th><th>Nội dung buổi thực hành</th></tr></thead>
           <tbody>
-            <tr><td><span class="wk">1</span></td><td>Giới thiệu học phần + cài đặt BizOn</td></tr>
-            <tr><td><span class="wk">2</span></td><td>Mùa 1 — Vòng 1–2</td></tr>
-            <tr><td><span class="wk">3</span></td><td>Mùa 1 — Vòng 3–4</td></tr>
-            <tr><td><span class="wk">4</span></td><td>Mùa 1 — Vòng 5–6</td></tr>
-            <tr><td><span class="wk">5</span></td><td>Sơ kết Mùa 1 & khởi động Mùa 2</td></tr>
-            <tr><td><span class="wk">6</span></td><td>Mùa 2 — Vòng 1–2</td></tr>
-            <tr><td><span class="wk">7</span></td><td>Mùa 2 — Vòng 3–4</td></tr>
-            <tr><td><span class="wk">8</span></td><td>Mùa 2 — Vòng 5–6 & chốt hai mùa</td></tr>
-            <tr><td><span class="wk close">9</span></td><td>Đại hội Cổ đông — Phiên A & B</td></tr>
-            <tr><td><span class="wk close">10</span></td><td>Đại hội Cổ đông — Phiên C & D</td></tr>
-            <tr><td><span class="wk close">11</span></td><td>Vòng Chung kết & Tổng kết giải đấu</td></tr>
-            <tr><td><span class="wk exam">12</span></td><td>Dự trữ + Thi kết thúc học phần (trên máy)</td></tr>
+            <tr><td rowspan="2"><span class="wk">1</span></td><td class="buoi">A</td><td>Cài đặt phần mềm, cấp tài khoản, chia đội cố định cả kỳ, đặt tên công ty và khẩu hiệu; khảo sát trước.</td></tr>
+            <tr><td class="buoi">B</td><td>Chơi thử Vòng 0 — làm quen giao diện và 5 vai trò; nhận Mã lớp.</td></tr>
+            <tr><td rowspan="2"><span class="wk">2</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
+            <tr><td rowspan="2"><span class="wk">3</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
+            <tr><td rowspan="2"><span class="wk">4</span></td><td class="buoi">A</td><td>Mùa 1 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 1 · Vòng 6 — Biến cố thị trường và quản trị rủi ro.</td></tr>
+            <tr><td rowspan="2"><span class="wk">5</span></td><td class="buoi">A</td><td>Sơ kết Mùa 1 — phân tích tab «Tổng kết», nộp báo cáo «Chi phí đối thủ» của đội.</td></tr>
+            <tr><td class="buoi">B</td><td>Đổi vai trong đội + Vòng khởi động Mùa 2.</td></tr>
+            <tr><td rowspan="2"><span class="wk">6</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 1 — Giá bán và độ co giãn của cầu.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 2 — Cấu trúc chi phí và điểm hoà vốn.</td></tr>
+            <tr><td rowspan="2"><span class="wk">7</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 3 — Marketing và định vị thương hiệu.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 4 — Vận hành, nhân sự và năng suất.</td></tr>
+            <tr><td rowspan="2"><span class="wk">8</span></td><td class="buoi">A</td><td>Mùa 2 · Vòng 5 — Nguồn vốn và đòn bẩy tài chính.</td></tr>
+            <tr><td class="buoi">B</td><td>Mùa 2 · Vòng 6 — Biến cố và quản trị rủi ro; chốt bảng tổng sắp hai mùa.</td></tr>
+            <tr><td rowspan="2"><span class="wk close">9</span></td><td class="buoi">A</td><td>ĐẠI HỘI CỔ ĐÔNG — Phiên A: khai mạc, giới thiệu Hội đồng đầu tư, bốc thăm thứ tự; huấn luyện khung PASTOR và checklist 12 mục; duyệt thử 2 đội.</td></tr>
+            <tr><td class="buoi">B</td><td>ĐẠI HỘI CỔ ĐÔNG — Phiên B: Sàn đấu vòng 1, 4 đội × (pitch 7 phút + Q&amp;A 8 phút + tự chấm nóng 3 phút).</td></tr>
+            <tr><td rowspan="2"><span class="wk close">10</span></td><td class="buoi">A</td><td>ĐẠI HỘI CỔ ĐÔNG — Phiên C: Sàn đấu vòng 2, 3–4 đội còn lại; phản biện chéo giữa các đội.</td></tr>
+            <tr><td class="buoi">B</td><td>ĐẠI HỘI CỔ ĐÔNG — Phiên D: Hội đồng nghị án, công bố mức cấp vốn 50–250 triệu; ký «Sổ Vốn», lập cam kết SMART.</td></tr>
+            <tr><td rowspan="2"><span class="wk close">11</span></td><td class="buoi">A</td><td>VÒNG CHUNG KẾT — toàn lớp chơi đồng bộ, két sắt khởi điểm bằng số vốn Hội đồng đã cấp.</td></tr>
+            <tr><td class="buoi">B</td><td>Tổng kết giải đấu: so sánh Mùa 1 với Mùa 2 của chính đội mình, trao huy hiệu, khảo sát sau, hướng dẫn ôn thi.</td></tr>
+            <tr><td rowspan="2"><span class="wk exam">12</span></td><td class="buoi">A</td><td>Buổi dự trữ — chỉ tổ chức khi cần bù bài.</td></tr>
+            <tr><td class="buoi">B</td><td>THI KẾT THÚC HỌC PHẦN TRÊN MÁY — ván cá nhân 6 vòng nhịp nhanh + bài phân tích viết trên máy.</td></tr>
           </tbody>
         </table>
       </div>
